@@ -2,7 +2,7 @@
 
 namespace Marshalls_LLC.Infrastructure.Migrations
 {
-    public partial class Initial : Migration
+    public partial class setautoincrementid : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -1,9 +1,9 @@
 ﻿
+using Marshalls_LLC.Core.SharedKernel;
+
 namespace Marshalls_LLC.Core.Entities
 {
-    public  class Office
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
+    public  class Office: BaseEntity
+    {    
     }
 }

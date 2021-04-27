@@ -668,6 +668,16 @@
             "rid": "win"
           }
         }
+      },
+      "Marshalls-LLC.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Marshalls-LLC.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Marshalls-LLC.Core.dll": {}
+        }
       }
     }
   },
@@ -2108,10 +2118,16 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "Marshalls-LLC.Core/1.0.0": {
+      "type": "project",
+      "path": "../Marshalls-LLC.Core/Marshalls-LLC.Core.csproj",
+      "msbuildProject": "../Marshalls-LLC.Core/Marshalls-LLC.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Marshalls-LLC.Core >= 1.0.0",
       "Microsoft.EntityFrameworkCore >= 6.0.0-preview.3.21201.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0-preview.3.21201.2",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 2.0.0-preview1-final",
@@ -2154,7 +2170,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "E:\\DDD-V8-SRL-Test\\Marshalls-LLC\\src\\Marshalls-LLC.Core\\Marshalls-LLC.Core.csproj": {
+              "projectPath": "E:\\DDD-V8-SRL-Test\\Marshalls-LLC\\src\\Marshalls-LLC.Core\\Marshalls-LLC.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

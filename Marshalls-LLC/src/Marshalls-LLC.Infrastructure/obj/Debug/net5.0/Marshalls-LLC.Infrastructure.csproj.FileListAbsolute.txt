@@ -13,3 +13,6 @@ E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\ref\Marshalls-LLC.Infrastructure.dll
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.pdb
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.genruntimeconfig.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Core.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Core.pdb
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.csproj.CopyComplete

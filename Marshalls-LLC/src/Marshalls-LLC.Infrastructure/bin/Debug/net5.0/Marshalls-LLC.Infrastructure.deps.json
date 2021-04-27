@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v5.0": {
       "Marshalls-LLC.Infrastructure/1.0.0": {
         "dependencies": {
+          "Marshalls-LLC.Core": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.0-preview.3.21201.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0-preview.3.21201.2",
           "Microsoft.EntityFrameworkCore.SqlServer.Design": "2.0.0-preview1-final",
@@ -542,6 +543,11 @@
             "fileVersion": "4.700.19.56404"
           }
         }
+      },
+      "Marshalls-LLC.Core/1.0.0": {
+        "runtime": {
+          "Marshalls-LLC.Core.dll": {}
+        }
       }
     }
   },
@@ -886,6 +892,11 @@
       "sha512": "sha512-CeWTdRNfRaSh0pm2gDTJFwVaXfTq6Xwv/sA887iwPTneW7oMtMlpvDIO+U60+3GWTB7Aom6oQwv5VZVUhQRdPQ==",
       "path": "system.windows.extensions/4.7.0",
       "hashPath": "system.windows.extensions.4.7.0.nupkg.sha512"
+    },
+    "Marshalls-LLC.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
