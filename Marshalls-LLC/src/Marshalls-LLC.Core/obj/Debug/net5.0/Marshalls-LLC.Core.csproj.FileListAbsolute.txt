@@ -1,0 +1,12 @@
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\bin\Debug\net5.0\Marshalls-LLC.Core.deps.json
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\bin\Debug\net5.0\Marshalls-LLC.Core.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\bin\Debug\net5.0\ref\Marshalls-LLC.Core.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\bin\Debug\net5.0\Marshalls-LLC.Core.pdb
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.csprojAssemblyReference.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.AssemblyInfoInputs.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.AssemblyInfo.cs
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.csproj.CoreCompileInputs.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\ref\Marshalls-LLC.Core.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Core\obj\Debug\net5.0\Marshalls-LLC.Core.pdb

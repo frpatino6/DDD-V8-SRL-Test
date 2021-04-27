@@ -1,0 +1,15 @@
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.csprojAssemblyReference.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.AssemblyInfoInputs.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.AssemblyInfo.cs
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.csproj.CoreCompileInputs.cache
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Infrastructure.deps.json
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Infrastructure.runtimeconfig.json
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Infrastructure.runtimeconfig.dev.json
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Infrastructure.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\ref\Marshalls-LLC.Infrastructure.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\bin\Debug\net5.0\Marshalls-LLC.Infrastructure.pdb
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\ref\Marshalls-LLC.Infrastructure.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.pdb
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Infrastructure\obj\Debug\net5.0\Marshalls-LLC.Infrastructure.genruntimeconfig.cache

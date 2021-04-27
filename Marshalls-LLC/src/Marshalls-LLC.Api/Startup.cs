@@ -1,7 +1,9 @@
+using Marshalls_LLC.Infrastructure.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,13 @@ namespace Marshalls_LLC.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            DbContextFactory.SetConnectionString(Configuration.GetConnectionString("AppConnection").ToString());
+            services.AddDbContext<AppDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("AppConnection"))
+                .EnableSensitiveDataLogging()
+                .UseLoggerFactory(MyLoggerFactory)
+                );
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -55,5 +64,14 @@ namespace Marshalls_LLC.Api
                 endpoints.MapControllers();
             });
         }
+        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder
+               .AddFilter((category, level) =>
+                   category == DbLoggerCategory.Database.Command.Name
+                   && level == LogLevel.Information)
+               .AddConsole();
+        });
     }
+
 }
