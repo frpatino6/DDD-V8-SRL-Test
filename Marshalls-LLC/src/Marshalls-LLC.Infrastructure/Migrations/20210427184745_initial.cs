@@ -13,7 +13,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -26,7 +26,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -39,7 +39,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,6 +91,35 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                         principalTable: "Position",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Division",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 2, "Manager" },
+                    { 1, "Operation" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Office",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "A" },
+                    { 2, "B" },
+                    { 3, "C" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Position",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 3, "Cargo assistant" },
+                    { 2, "Head of cargo" },
+                    { 1, "Cargo Manager" }
                 });
 
             migrationBuilder.CreateIndex(

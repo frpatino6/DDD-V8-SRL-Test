@@ -8,7 +8,7 @@ namespace Marshalls_LLC.Core.Entities
     /// <summary>
     /// Salary entity
     /// </summary>
-    public class Salary
+    public class Employee
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]

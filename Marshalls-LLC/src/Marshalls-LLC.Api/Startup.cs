@@ -1,4 +1,7 @@
+using Marshalls_LLC.Core.Interfaces;
+using Marshalls_LLC.Core.Services;
 using Marshalls_LLC.Infrastructure.Data;
+using Marshalls_LLC.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -35,6 +38,8 @@ namespace Marshalls_LLC.Api
                 .UseLoggerFactory(MyLoggerFactory)
                 );
 
+            services.AddScoped<IEmployeeRepository, SalaryRepository>();
+            services.AddScoped<IEmployeeServices, EmployeeServices>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

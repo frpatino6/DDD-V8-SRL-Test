@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Marshalls_LLC.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210427145327_initial")]
-    partial class initial
+    [Migration("20210428031424_add-index-salary-entity")]
+    partial class addindexsalaryentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,12 +28,24 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Division");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            Name = "Manager"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "Operation"
+                        });
                 });
 
             modelBuilder.Entity("Marshalls_LLC.Core.Entities.Office", b =>
@@ -43,12 +55,29 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Office");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "A"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "B"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "C"
+                        });
                 });
 
             modelBuilder.Entity("Marshalls_LLC.Core.Entities.Position", b =>
@@ -58,12 +87,29 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Position");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 3,
+                            Name = "Cargo assistant"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Head of cargo"
+                        },
+                        new
+                        {
+                            Id = 1,
+                            Name = "Cargo Manager"
+                        });
                 });
 
             modelBuilder.Entity("Marshalls_LLC.Core.Entities.Salary", b =>
@@ -98,7 +144,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmployeeName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EmployeeSurname")
                         .HasColumnType("nvarchar(max)");
@@ -127,6 +173,8 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DivisionId");
+
+                    b.HasIndex("EmployeeName");
 
                     b.HasIndex("OfficeId");
 
