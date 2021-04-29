@@ -70,7 +70,20 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.Include(i=>i.Division).Include(i=>i.Position).ToListAsync();
+                return await context.Employee.Include(i => i.Division).Include(i => i.Position).ToListAsync();
+            }
+        }
+
+        /// <summary>
+        /// Gets the by identifier.
+        /// </summary>
+        /// <param name="employeeCode">The employee code.</param>
+        /// <returns></returns>
+        public async Task<Employee> GetById(string employeeCode)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                return await context.Employee.Where(x => x.EmployeeCode.Equals(employeeCode)).FirstOrDefaultAsync();
             }
         }
 
@@ -81,19 +94,35 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<List<Employee>> GetByAllOfficeBySameGrade(int grade)
+        public async Task<List<Employee>> GetByAllOfficeBySameGrade(string employeeCode)
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.Where(x =>x.Grade.Equals(grade)).ToListAsync();
+                var employee = await GetById(employeeCode);
+
+                if (employee != null)
+                {
+                    var result = context.Employee
+                        .Where(g => g.Grade.Equals(employee.Grade))
+                        .GroupBy(e => e.OfficeId)
+                        .Select(g => new { country = g.Key, count = g.Count() })
+                        .ToDictionary(k => k.country, i => i.count);
+                }
+
+                return null;
             }
         }
 
-        public async Task<List<Employee>> GetByAllPuestoySameGrade(int grade)
+        public async Task<List<Employee>> GetByAllPuestoySameGrade(string employeeCode)
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.Where(x => x.Grade.Equals(grade)).ToListAsync();
+                var employee = await GetById(employeeCode);
+
+                if (employee != null)
+                    return await context.Employee.Where(x => x.Grade.Equals(employee.Grade)).ToListAsync();
+
+                return null;
             }
         }
 
@@ -103,19 +132,44 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <param name="office">The office.</param>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        public async Task<List<Employee>> GetByOfficeAndGrade(int office, int grade)
+        public async Task<List<Employee>> GetByOfficeAndGrade(string employeeCode)
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.Where(x => x.Office.Equals(office) && x.Grade.Equals(grade)).ToListAsync();
+                var employee = await GetById(employeeCode);
+
+                if (employee != null)
+                {
+                    var result = await context.Employee.Where(x => x.OfficeId.Equals(employee.OfficeId)
+                       && x.Grade.Equals(employee.Grade)).Include(i => i.Position).Include(i => i.Division).ToListAsync();
+
+                    return result;
+                }
+
+                return null;
             }
         }
 
-        public async Task<List<Employee>> GetByPositionAndGrade(int position, int grade)
+        /// <summary>
+        /// Gets the by position and grade.
+        /// </summary>
+        /// <param name="emplyeeCode">The emplyee code.</param>
+        /// <returns></returns>
+        public async Task<List<Employee>> GetByPositionAndGrade(string emplyeeCode)
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.Where(x => x.Position.Equals(position) && x.Grade.Equals(grade)).ToListAsync();
+                var employee = await GetById(emplyeeCode);
+
+                if (employee != null)
+                {
+                    var result = await context.Employee.Where(x => x.PositionId.Equals(employee.PositionId)
+                    && x.Grade.Equals(employee.Grade)).Include(i => i.Position).Include(i => i.Division).ToListAsync();
+
+                    return result;
+                }
+
+                return null;
             }
         }
 

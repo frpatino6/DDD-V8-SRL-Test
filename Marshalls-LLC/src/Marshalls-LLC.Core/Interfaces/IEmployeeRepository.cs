@@ -42,6 +42,8 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <returns></returns>
         Task<List<Employee>> Get(EmployeeDTO employeeDTO);
 
+        Task<Employee> GetById(string employeeCode);
+
         /// <summary>
         /// Gets all.
         /// </summary>
@@ -55,7 +57,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <param name="office">The office.</param>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByOfficeAndGrade(int office, int grade);
+        Task<List<Employee>> GetByOfficeAndGrade(string employeeCode);
 
         /// <summary>
         /// Gets the by position and grade.
@@ -63,21 +65,21 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <param name="position">The position.</param>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByPositionAndGrade(int position, int grade);
+        Task<List<Employee>> GetByPositionAndGrade(string employeeCode);
 
         /// <summary>
         /// Gets the by all office by same grade.
         /// </summary>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByAllOfficeBySameGrade(int grade);
+        Task<List<Employee>> GetByAllOfficeBySameGrade(string employeeCode);
 
         /// <summary>
         /// Gets the by all puestoy same grade.
         /// </summary>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByAllPuestoySameGrade(int grade);
+        Task<List<Employee>> GetByAllPuestoySameGrade(string employeeCode);
 
     }
 }

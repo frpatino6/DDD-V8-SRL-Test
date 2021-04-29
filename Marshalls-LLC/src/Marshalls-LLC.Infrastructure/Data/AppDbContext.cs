@@ -65,25 +65,23 @@ namespace Marshalls_LLC.Infrastructure.Data
             for (int i = 1; i < firstName.ToList().Count; i++)
             {
                 var employeeCode = r.Next(1000, 99999);
+                var office = r.Next(1, 3);
+                var division = r.Next(1, 2);
+                var position = r.Next(1, 3);
+                var grade = r.Next(6, 18);
+                var beginDate = DateTime.Now;
+                var bithday = new DateTime(r.Next(1960, 2001), r.Next(1, 12), r.Next(1, 27));
+                var identification = r.Next(0, 99999999);
+                var baseSalary = rangeSalary[r.Next(0, 7)];
+                var productionBonus = baseSalary * 10 / 100;
+                var compensationBonus = baseSalary * 5 / 100;
+                var commision = baseSalary * 1 / 100;
+                var contribution = baseSalary * 3 / 100;
 
                 for (int j = 1; j <= 6; j++)
                 {
-
                     var month = j;
                     int year = 2020;
-                    var office = r.Next(1, 3);
-                    var division = r.Next(1, 2);
-                    var position = r.Next(1, 3);
-                    var grade = r.Next(6, 18);
-                    var beginDate = DateTime.Now;
-                    var bithday = new DateTime(r.Next(1960, 2001), r.Next(1, 12), r.Next(1, 27));
-                    var identification = r.Next(0, 99999999);
-                    var baseSalary = rangeSalary[r.Next(0, 7)];
-                    var productionBonus = baseSalary * 10 / 100;
-                    var compensationBonus = baseSalary * 5 / 100;
-                    var commision = baseSalary * 1 / 100;
-                    var contribution = baseSalary * 3 / 100;
-
                     modelBuilder.Entity<Employee>().HasData(new Employee
                     {
                         Id = id,

@@ -37,11 +37,11 @@ namespace Marshalls_LLC.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(string emplyeeCode = "", int? reportType = 0)
         {
             try
             {
-                var allEmployees = await employeeServices.GetAll();
+                var allEmployees = await employeeServices.GetAll(emplyeeCode, reportType);
                 var result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
 
                 if (result.Count > 0)
@@ -61,7 +61,7 @@ namespace Marshalls_LLC.Api.Controllers
         {
             try
             {
-                Employee newEmployee = new  Employee();
+                Employee newEmployee = new Employee();
 
                 newEmployee = mapper.Map<Employee>(value);
                 var recordsAffected = await employeeServices.CreateEmployee(newEmployee);
