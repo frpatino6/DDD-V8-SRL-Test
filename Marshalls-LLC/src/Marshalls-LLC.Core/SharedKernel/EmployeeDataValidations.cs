@@ -35,20 +35,25 @@ namespace Marshalls_LLC.Core.SharedKernel
         /// </exception>
         public bool ValidateEmpoyeeData(Employee employee)
         {
+            if (employee.Id.Equals(0))
             // validates if there is an employee with the same full name
-            var countResultEmployee = this.salaryRepository.GetEmployeeByFullName(employee.EmployeeName, employee.EmployeeSurname);
-
-            if (countResultEmployee > 0)
             {
-                throw new Exception($"Ya existe un empleado con el nombre {employee.EmployeeName} {employee.EmployeeSurname}");
+                var countResultEmployee = this.salaryRepository.GetEmployeeByFullName(employee.EmployeeName, employee.EmployeeSurname);
+
+                if (countResultEmployee > 0)
+                {
+                    throw new Exception($"Ya existe un empleado con el nombre {employee.EmployeeName} {employee.EmployeeSurname}");
+                }
+
             }
 
-            // validates if employee have created a same period  
-            var countResultSalaryPeriod = this.salaryRepository.GetPeriodMonthYearByEmployee(employee.Id, employee.Month, employee.Year);
-
             if (employee.Id > 0)
+            {
+                // validates if employee have created a same period  
+                var countResultSalaryPeriod = this.salaryRepository.GetPeriodMonthYearByEmployee(employee.Id, employee.Month, employee.Year);
                 if (countResultSalaryPeriod > 0)
                     throw new Exception($"Ya existe un periodo creado para  el mes {employee.Month} y año {employee.Year}");
+            }
 
             if (!IsValidYear(employee.Year))
             {

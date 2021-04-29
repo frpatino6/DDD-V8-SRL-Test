@@ -32,24 +32,7 @@ namespace Marshalls_LLC.Api.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            var rng = new Random();
-            var employee = new Employee();
-            employee.EmployeeName = "Fernando";
-            employee.EmployeeSurname = "Rodriguez";
-
-            try
-            {
-                this.salaryServices.CreateEmployee(employee);
-            }
-            catch (DbUpdateException ex)
-            {
-                BadRequest(ex.InnerException);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            var rng = new Random();          
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

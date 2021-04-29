@@ -8,6 +8,7 @@ namespace Marshalls_LLC.Api.Controllers
     using Marshalls_LLC.Core.Entities;
     using Marshalls_LLC.Core.Interfaces;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -70,9 +71,13 @@ namespace Marshalls_LLC.Api.Controllers
                 else
                     return BadRequest("La operación no se ejecutó con éxito.");
             }
+            catch (DbUpdateException ex)
+            {
+                return BadRequest(ex.Message);
+            }
             catch (System.Exception ex)
             {
-                return BadRequest(ex);
+                return BadRequest(ex.Message);
             }
         }
     }

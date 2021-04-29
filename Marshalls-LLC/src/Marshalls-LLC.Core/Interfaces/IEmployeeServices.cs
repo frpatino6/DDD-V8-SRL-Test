@@ -17,11 +17,34 @@ namespace Marshalls_LLC.Core.Interfaces
         Task<int> CreateEmployee(Employee salary);
 
         /// <summary>
-        /// Gets the specified employee dto.
+        /// Gets the by ofice and grade.
         /// </summary>
-        /// <param name="employeeDTO">The employee dto.</param>
+        /// <param name="office">The office.</param>
+        /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> Get(EmployeeDTO employeeDTO);
+        Task<List<Employee>> GetByOfficeAndGrade(int office, int grade);
+
+        /// <summary>
+        /// Gets the by position and grade.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        Task<List<Employee>> GetByPositionAndGrade(int position, int grade);
+
+        /// <summary>
+        /// Gets the by all office by same grade.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        Task<List<Employee>> GetByAllOfficeBySameGrade( int grade);
+
+        /// <summary>
+        /// Gets the by all puestoy same grade.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        Task<List<Employee>> GetByAllPuestoySameGrade(int grade);
 
         /// <summary>
         /// Gets all.

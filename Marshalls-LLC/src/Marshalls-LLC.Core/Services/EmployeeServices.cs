@@ -29,7 +29,7 @@ namespace Marshalls_LLC.Core.Services
             this.salaryRepository = salaryRepository;
             this.employeeDataValidations = employeeDataValidations;
         }
-       
+
         /// <summary>
         /// Creates the salary.
         /// </summary>
@@ -44,15 +44,59 @@ namespace Marshalls_LLC.Core.Services
             }
             return null;
         }
-
-        public Task<List<Employee>> Get(EmployeeDTO employeeDTO)
-        {
-            return salaryRepository.Get(employeeDTO);
-        }
-
+  
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         public Task<List<Employee>> GetAll()
         {
             return salaryRepository.GetAll();
+        }
+      
+
+        /// <summary>
+        /// Gets the by all office by same grade.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        public Task<List<Employee>> GetByAllOfficeBySameGrade(int grade)
+        {
+            return salaryRepository.GetByAllOfficeBySameGrade(grade);
+        }
+
+        /// <summary>
+        /// Gets the by all puestoy same grade.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task<List<Employee>> GetByAllPuestoySameGrade(int grade)
+        {
+            return salaryRepository.GetByAllPuestoySameGrade(grade);
+        }
+
+        /// <summary>
+        /// Gets the by position and grade.
+        /// </summary>
+        /// <param name="position">The position.</param>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public Task<List<Employee>> GetByPositionAndGrade(int position, int grade)
+        {
+            return salaryRepository.GetByPositionAndGrade(position, grade);
+        }
+
+        /// <summary>
+        /// Gets the by ofice and grade.
+        /// </summary>
+        /// <param name="office">The office.</param>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        public Task<List<Employee>> GetByOfficeAndGrade(int office, int grade)
+        {
+            return salaryRepository.GetByOfficeAndGrade(office, grade);
         }
     }
 }

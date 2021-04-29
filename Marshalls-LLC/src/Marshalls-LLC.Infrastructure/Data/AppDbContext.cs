@@ -64,6 +64,8 @@ namespace Marshalls_LLC.Infrastructure.Data
 
             for (int i = 1; i < firstName.ToList().Count; i++)
             {
+                var employeeCode = r.Next(1000, 99999);
+
                 for (int j = 1; j <= 6; j++)
                 {
 
@@ -76,13 +78,11 @@ namespace Marshalls_LLC.Infrastructure.Data
                     var beginDate = DateTime.Now;
                     var bithday = new DateTime(r.Next(1960, 2001), r.Next(1, 12), r.Next(1, 27));
                     var identification = r.Next(0, 99999999);
-                    var employeeCode = r.Next(1000, 99999);
                     var baseSalary = rangeSalary[r.Next(0, 7)];
                     var productionBonus = baseSalary * 10 / 100;
                     var compensationBonus = baseSalary * 5 / 100;
                     var commision = baseSalary * 1 / 100;
                     var contribution = baseSalary * 3 / 100;
-
 
                     modelBuilder.Entity<Employee>().HasData(new Employee
                     {
@@ -106,7 +106,6 @@ namespace Marshalls_LLC.Infrastructure.Data
                         Grade = grade
                     });
                     id++;
-
                 }
 
             }
@@ -131,5 +130,6 @@ namespace Marshalls_LLC.Infrastructure.Data
         public DbSet<Office> Office { get; set; }
         public DbSet<Division> Division { get; set; }
         public DbSet<Position> Position { get; set; }
+      
     }
 }

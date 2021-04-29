@@ -29,6 +29,7 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         {
             using (var context = DbContextFactory.Create())
             {
+                employee.Id = 0;
                 context.Employee.Add(employee);
                 return await context.SaveChangesAsync();
             }
@@ -61,11 +62,60 @@ namespace Marshalls_LLC.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <returns></returns>
         public async Task<List<Employee>> GetAll()
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.ToListAsync();
+                return await context.Employee.Include(i=>i.Division).Include(i=>i.Position).ToListAsync();
+            }
+        }
+
+        /// <summary>
+        /// Gets the by all office by same grade.
+        /// </summary>
+        /// <param name="office">The office.</param>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public async Task<List<Employee>> GetByAllOfficeBySameGrade(int grade)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                return await context.Employee.Where(x =>x.Grade.Equals(grade)).ToListAsync();
+            }
+        }
+
+        public async Task<List<Employee>> GetByAllPuestoySameGrade(int grade)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                return await context.Employee.Where(x => x.Grade.Equals(grade)).ToListAsync();
+            }
+        }
+
+        /// <summary>
+        /// Gets the by ofice and grade.
+        /// </summary>
+        /// <param name="office">The office.</param>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        public async Task<List<Employee>> GetByOfficeAndGrade(int office, int grade)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                return await context.Employee.Where(x => x.Office.Equals(office) && x.Grade.Equals(grade)).ToListAsync();
+            }
+        }
+
+        public async Task<List<Employee>> GetByPositionAndGrade(int position, int grade)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                return await context.Employee.Where(x => x.Position.Equals(position) && x.Grade.Equals(grade)).ToListAsync();
             }
         }
 
@@ -77,8 +127,6 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <returns></returns>
         public int GetEmployeeByFullName(string name, string sureName)
         {
-            EmployeeSeedAsync();
-
             using (var context = DbContextFactory.Create())
             {
                 return context.Employee.Select(x => AppDbContext.Quantity_Of_Employee_By_Name(name, sureName)).FirstOrDefault();
@@ -111,70 +159,5 @@ namespace Marshalls_LLC.Infrastructure.Repositories
             }
         }
 
-        private async Task EmployeeSeedAsync()
-        {
-            var personGenerator = new PersonNameGenerator();
-            var firstName = personGenerator.GenerateMultipleMaleFirstNames(18).ToList();
-            var lastName = personGenerator.GenerateMultipleLastNames(18).ToList();
-            long[] rangeSalary = new long[] { 2000, 2500, 3000, 3500, 4000, 5000, 7000, 9000 };
-            int count = 0;
-
-            Random r = new Random();
-
-            for (int i = 1; i < firstName.ToList().Count; i++)
-            {
-                for (int j = 1; j <= 6; j++)
-                {
-                    var month = j;
-                    var year = 2020;
-                    var office = r.Next(1, 3);
-                    var division = r.Next(1, 2);
-                    var position = r.Next(1, 3);
-                    var grade = r.Next(6, 18);
-                    var beginDate = DateTime.Now;
-                    var bithday = new DateTime(r.Next(1960, 2001), r.Next(1, 12), r.Next(1, 27));
-                    var identification = r.Next(0, 99999999);
-                    var employeeCode = r.Next(1000, 99999);
-                    var baseSalary = rangeSalary[r.Next(0, 7)];
-                    var productionBonus = baseSalary * 10 / 100;
-                    var compensationBonus = baseSalary * 5 / 100;
-                    var commision = baseSalary * 1 / 100;
-                    var contribution = baseSalary * 3 / 100;
-
-                    var employee = new Employee()
-                    {                        
-                        BaseSalary = baseSalary,
-                        BeginDate = beginDate,
-                        Birthday = bithday,
-                        Commission = commision,
-                        CompensationBonus = compensationBonus,
-                        Contributions = contribution,
-                        DivisionId = division,
-                        EmployeeCode = employeeCode.ToString(),
-                        EmployeeName = firstName[i],
-                        EmployeeSurname = lastName[i],
-                        IdentificationNumber = identification.ToString(),
-                        OfficeId = office,
-                        PositionId = position,
-                        ProductionBonus = productionBonus,
-                        Year = year,
-                        Month = month,
-                        Grade = grade
-                    };
-                    try
-                    {
-                        await CreateSalary(employee);
-                        count++;
-                    }
-                    catch (DbUpdateException ex)
-                    {
-
-                        throw;
-                    }
-                }
-
-            }
-
-        }
     }
 }
