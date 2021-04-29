@@ -49,5 +49,11 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <returns></returns>
         Task<List<Employee>> GetAll();
 
+        /// <summary>
+        /// Gets the employee same office grade.
+        /// </summary>
+        /// <returns></returns>
+        Task<List<Employee>> GetEmployeeSameOfficeGrade();
+
     }
 }

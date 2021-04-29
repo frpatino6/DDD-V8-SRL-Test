@@ -19,6 +19,7 @@ namespace Marshalls_LLC.Core.Entities
         public int OfficeId { get; set; }
         public Office Office { get; set; }
         public Division Division { get; set; }
+        public int DivisionId { get; set; }
         public int PositionId { get; set; }
         public Position Position { get; set; }
         [MaxLength(10)]

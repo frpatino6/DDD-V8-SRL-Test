@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Om4q+FjgGdtsMQw7lF379VexpRgT/2aqVMpS9kl+WywUm6Ul8MZi7F63XgRxmoX48EAgVwgTbp3Ad3hU7pQfVw==",
+  "dgSpecHash": "N0vqi1t37XzjV7UeZlGSPr1rkg/BHvg50I5Hc7cD/tdehefLcozqL4yEjIjV0mzn9W2oshefc4D4YRZtwH6dsw==",
   "success": true,
   "projectFilePath": "E:\\DDD-V8-SRL-Test\\Marshalls-LLC\\src\\Marshalls-LLC.Infrastructure\\Marshalls-LLC.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -38,6 +38,7 @@
     "C:\\Users\\fernando\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\netstandard.library\\2.0.0-preview1-25301-01\\netstandard.library.2.0.0-preview1-25301-01.nupkg.sha512",
+    "C:\\Users\\fernando\\.nuget\\packages\\randomnamegeneratorlibrary\\1.2.2\\randomnamegeneratorlibrary.1.2.2.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\system.collections.immutable\\6.0.0-preview.3.21201.4\\system.collections.immutable.6.0.0-preview.3.21201.4.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\system.componentmodel.annotations\\6.0.0-preview.3.21201.4\\system.componentmodel.annotations.6.0.0-preview.3.21201.4.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\system.configuration.configurationmanager\\4.7.0\\system.configuration.configurationmanager.4.7.0.nupkg.sha512",

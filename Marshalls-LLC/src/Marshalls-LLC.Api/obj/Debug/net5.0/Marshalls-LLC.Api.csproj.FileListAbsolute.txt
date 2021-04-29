@@ -73,3 +73,4 @@ E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\Marshall
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\Marshalls-LLC.Core.pdb
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\AutoMapper.dll
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\RandomNameGeneratorLibrary.dll

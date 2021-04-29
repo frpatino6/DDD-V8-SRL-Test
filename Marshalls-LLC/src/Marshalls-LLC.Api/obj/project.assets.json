@@ -478,6 +478,18 @@
           "build/netstandard2.0/_._": {}
         }
       },
+      "RandomNameGeneratorLibrary/1.2.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/RandomNameGeneratorLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/RandomNameGeneratorLibrary.dll": {}
+        }
+      },
       "Swashbuckle.AspNetCore/5.6.3": {
         "type": "package",
         "dependencies": {
@@ -787,7 +799,8 @@
           "Marshalls-LLC.Core": "1.0.0",
           "Microsoft.EntityFrameworkCore": "6.0.0-preview.3.21201.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.0-preview.3.21201.2",
-          "Microsoft.EntityFrameworkCore.SqlServer.Design": "2.0.0-preview1-final"
+          "Microsoft.EntityFrameworkCore.SqlServer.Design": "2.0.0-preview1-final",
+          "RandomNameGeneratorLibrary": "1.2.2"
         },
         "compile": {
           "bin/placeholder/Marshalls-LLC.Infrastructure.dll": {}
@@ -1705,6 +1718,19 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.0-preview1-25301-01.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "RandomNameGeneratorLibrary/1.2.2": {
+      "sha512": "Sz9eseIDKZ99yopg4TEAGPVIoGOKWYsWDHIfGQENXlOJYBoIsL68rqe9jrc9yP+/dOYH5RaCag6d8ykaqsbFFw==",
+      "type": "package",
+      "path": "randomnamegeneratorlibrary/1.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/RandomNameGeneratorLibrary.dll",
+        "lib/netstandard1.6/RandomNameGeneratorLibrary.dll",
+        "randomnamegeneratorlibrary.1.2.2.nupkg.sha512",
+        "randomnamegeneratorlibrary.nuspec"
       ]
     },
     "Swashbuckle.AspNetCore/5.6.3": {

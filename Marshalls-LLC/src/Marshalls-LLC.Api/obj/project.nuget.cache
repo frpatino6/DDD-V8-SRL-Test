@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4TYNSoZD6CMhn67tnPPjkTyePOl0qVAJOlR1KjLnfIbMI5Wy2ZvNWUShK15jV/7I7eYoOuu1Esp1Znz7fVp5VA==",
+  "dgSpecHash": "lDvoI/p0l2OswiPvG8oUDOQDmvE9d5FDyY+c3Jif8V2RsLaqnVCEz+F+bxJIzRZPMpEq7AadMaPCdg2c3CNjhQ==",
   "success": true,
   "projectFilePath": "E:\\DDD-V8-SRL-Test\\Marshalls-LLC\\src\\Marshalls-LLC.Api\\Marshalls-LLC.Api.csproj",
   "expectedPackageFiles": [
@@ -40,6 +40,7 @@
     "C:\\Users\\fernando\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\netstandard.library\\2.0.0-preview1-25301-01\\netstandard.library.2.0.0-preview1-25301-01.nupkg.sha512",
+    "C:\\Users\\fernando\\.nuget\\packages\\randomnamegeneratorlibrary\\1.2.2\\randomnamegeneratorlibrary.1.2.2.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",
     "C:\\Users\\fernando\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\5.6.3\\swashbuckle.aspnetcore.swaggergen.5.6.3.nupkg.sha512",

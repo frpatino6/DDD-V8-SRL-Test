@@ -396,7 +396,7 @@
       "Microsoft.Packaging.Tools/1.0.0-preview1-25301-01": {
         "type": "package",
         "build": {
-          "build/_._": {}
+          "build/Microsoft.Packaging.Tools.targets": {}
         }
       },
       "Microsoft.Win32.Registry/4.7.0": {
@@ -453,7 +453,19 @@
           "lib/netstandard1.0/_._": {}
         },
         "build": {
-          "build/netstandard2.0/_._": {}
+          "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "RandomNameGeneratorLibrary/1.2.2": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/RandomNameGeneratorLibrary.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/RandomNameGeneratorLibrary.dll": {}
         }
       },
       "System.Collections.Immutable/6.0.0-preview.3.21201.4": {
@@ -1582,6 +1594,19 @@
         "netstandard.library.nuspec"
       ]
     },
+    "RandomNameGeneratorLibrary/1.2.2": {
+      "sha512": "Sz9eseIDKZ99yopg4TEAGPVIoGOKWYsWDHIfGQENXlOJYBoIsL68rqe9jrc9yP+/dOYH5RaCag6d8ykaqsbFFw==",
+      "type": "package",
+      "path": "randomnamegeneratorlibrary/1.2.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net40/RandomNameGeneratorLibrary.dll",
+        "lib/netstandard1.6/RandomNameGeneratorLibrary.dll",
+        "randomnamegeneratorlibrary.1.2.2.nupkg.sha512",
+        "randomnamegeneratorlibrary.nuspec"
+      ]
+    },
     "System.Collections.Immutable/6.0.0-preview.3.21201.4": {
       "sha512": "DfWG5i8zWLdNdp3UmcCK3C2HN+4nLzZ/YGy4zOJpnYmC0r7dLfJKAjUwU1ay51DQHnTmcw+Jdk7CA3sMI3wLCg==",
       "type": "package",
@@ -2227,7 +2252,8 @@
       "Microsoft.EntityFrameworkCore >= 6.0.0-preview.3.21201.2",
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.0-preview.3.21201.2",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 2.0.0-preview1-final",
-      "Microsoft.EntityFrameworkCore.Tools >= 6.0.0-preview.3.21201.2"
+      "Microsoft.EntityFrameworkCore.Tools >= 6.0.0-preview.3.21201.2",
+      "RandomNameGeneratorLibrary >= 1.2.2"
     ]
   },
   "packageFolders": {
@@ -2300,6 +2326,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[6.0.0-preview.3.21201.2, )"
+          },
+          "RandomNameGeneratorLibrary": {
+            "target": "Package",
+            "version": "[1.2.2, )"
           }
         },
         "imports": [
