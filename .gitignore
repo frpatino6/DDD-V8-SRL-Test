@@ -36,6 +36,18 @@ bin/
 obj/
 Debug/
 Release/
+build/
+*.suo
+*.user
+_ReSharper.*/
+*.sdf
+bin/
+obj/
+Debug/
+Release/
+*.opensdf
+*.tlog
+*.log
 
 # Visual Studio 2015/2017 cache/options directory
 .vs/
