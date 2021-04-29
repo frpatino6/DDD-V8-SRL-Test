@@ -3,6 +3,7 @@
 
 namespace Marshalls_LLC.Infrastructure.Data
 {
+    using System;
     using System.Diagnostics.CodeAnalysis;
     using Marshalls_LLC.Core.Entities;
     using Microsoft.EntityFrameworkCore;
@@ -18,7 +19,7 @@ namespace Marshalls_LLC.Infrastructure.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {    
+        {
             var divisionOperation = new Division() { Id = 1, Name = "Operation" };
             var divisionManager = new Division() { Id = 2, Name = "Manager" };
             modelBuilder.Entity<Division>().HasData(new Division[] { divisionManager, divisionOperation });
@@ -33,10 +34,31 @@ namespace Marshalls_LLC.Infrastructure.Data
             var officeC = new Office() { Id = 3, Name = "C" };
             modelBuilder.Entity<Office>().HasData(new Office[] { officeA, officeB, officeC });
 
-            
+            // Set default datetime for BeginDate field
+            modelBuilder.Entity<Employee>()
+           .Property(b => b.BeginDate)
+           .HasDefaultValue(DateTime.Now);
+
+            // Set default datetime for BeginDate field
+            modelBuilder.Entity<Employee>()
+           .Property(b => b.Birthday)
+           .HasDefaultValue(DateTime.MinValue);
 
             base.OnModelCreating(modelBuilder);
         }
+
+        [DbFunction("Quantity_Of_Employee_By_Name", "dbo")]
+        public static int Quantity_Of_Employee_By_Name(string firstName, string sureName)
+        {
+            throw new Exception();
+        }
+
+        [DbFunction("Quantity_Of_Salary_By_Period", "dbo")]
+        public static int Quantity_Of_Salary_By_Period(int id, int month, int year)
+        {
+            throw new Exception();
+        }
+
 
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Office> Office { get; set; }

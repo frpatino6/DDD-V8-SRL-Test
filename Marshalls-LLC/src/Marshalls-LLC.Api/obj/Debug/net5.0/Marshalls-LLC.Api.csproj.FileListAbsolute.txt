@@ -71,3 +71,5 @@ E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\System.D
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\System.Runtime.CompilerServices.Unsafe.dll
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\Marshalls-LLC.Core.dll
 E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\Marshalls-LLC.Core.pdb
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\AutoMapper.dll
+E:\DDD-V8-SRL-Test\Marshalls-LLC\src\Marshalls-LLC.Api\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

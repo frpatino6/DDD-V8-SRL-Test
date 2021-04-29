@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "C00nX+aju5pByxeaZbJTWmTTA91DP1jcPdqFPDjGd2kuyww3weoAPSuDRK7WfczJxD2D+ydF/89tYKIxAHDprQ==",
+  "dgSpecHash": "kK7O7yJbfgYaRKS/OhgwCgF2UoWXRX4hvadaa1KKsWgg1pVj0ldl6RA0vjOvLVw607uGJNIQHiamwL6cYmoiIg==",
   "success": true,
   "projectFilePath": "E:\\DDD-V8-SRL-Test\\Marshalls-LLC\\src\\Marshalls-LLC.Core\\Marshalls-LLC.Core.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\fernando\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
+    "C:\\Users\\fernando\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
+    "C:\\Users\\fernando\\.nuget\\packages\\system.reflection.emit\\4.7.0\\system.reflection.emit.4.7.0.nupkg.sha512"
+  ],
   "logs": []
 }

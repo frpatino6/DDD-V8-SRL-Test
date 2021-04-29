@@ -4,14 +4,16 @@ using Marshalls_LLC.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Marshalls_LLC.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210428195316_set-max-lnegth-employee")]
+    partial class setmaxlnegthemployee
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,15 +58,11 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                     b.Property<double>("BaseSalary")
                         .HasColumnType("float");
 
-                    b.Property<DateTime?>("BeginDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 4, 28, 17, 38, 3, 626, DateTimeKind.Local).AddTicks(6683));
+                    b.Property<DateTime>("BeginDate")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("Birthday")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                    b.Property<DateTime>("Birthday")
+                        .HasColumnType("datetime2");
 
                     b.Property<double>("Commission")
                         .HasColumnType("float");
@@ -100,10 +98,10 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                     b.Property<int>("Month")
                         .HasColumnType("int");
 
-                    b.Property<int>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PositionId")
+                    b.Property<int?>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<double>("ProductionBonus")
@@ -195,15 +193,11 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 
                     b.HasOne("Marshalls_LLC.Core.Entities.Office", "Office")
                         .WithMany()
-                        .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OfficeId");
 
                     b.HasOne("Marshalls_LLC.Core.Entities.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PositionId");
 
                     b.Navigation("Division");
 

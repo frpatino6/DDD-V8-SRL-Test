@@ -4,14 +4,16 @@ using Marshalls_LLC.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Marshalls_LLC.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210428215642_config-employee-entity-default-values")]
+    partial class configemployeeentitydefaultvalues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,7 +61,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                     b.Property<DateTime?>("BeginDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2021, 4, 28, 17, 38, 3, 626, DateTimeKind.Local).AddTicks(6683));
+                        .HasDefaultValue(new DateTime(2021, 4, 28, 16, 56, 41, 755, DateTimeKind.Local).AddTicks(5092));
 
                     b.Property<DateTime?>("Birthday")
                         .ValueGeneratedOnAdd()
@@ -100,10 +102,10 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                     b.Property<int>("Month")
                         .HasColumnType("int");
 
-                    b.Property<int>("OfficeId")
+                    b.Property<int?>("OfficeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PositionId")
+                    b.Property<int?>("PositionId")
                         .HasColumnType("int");
 
                     b.Property<double>("ProductionBonus")
@@ -195,15 +197,11 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 
                     b.HasOne("Marshalls_LLC.Core.Entities.Office", "Office")
                         .WithMany()
-                        .HasForeignKey("OfficeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OfficeId");
 
                     b.HasOne("Marshalls_LLC.Core.Entities.Position", "Position")
                         .WithMany()
-                        .HasForeignKey("PositionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PositionId");
 
                     b.Navigation("Division");
 

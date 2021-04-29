@@ -1,21 +1,16 @@
 using Marshalls_LLC.Core.Interfaces;
 using Marshalls_LLC.Core.Services;
+using Marshalls_LLC.Core.SharedKernel;
 using Marshalls_LLC.Infrastructure.Data;
 using Marshalls_LLC.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Marshalls_LLC.Api
 {
@@ -32,14 +27,17 @@ namespace Marshalls_LLC.Api
         public void ConfigureServices(IServiceCollection services)
         {
             DbContextFactory.SetConnectionString(Configuration.GetConnectionString("AppConnection").ToString());
-            services.AddDbContext<AppDbContext>(options => 
+            services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("AppConnection"))
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(MyLoggerFactory)
                 );
 
-            services.AddScoped<IEmployeeRepository, SalaryRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeServices, EmployeeServices>();
+            services.AddScoped<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
