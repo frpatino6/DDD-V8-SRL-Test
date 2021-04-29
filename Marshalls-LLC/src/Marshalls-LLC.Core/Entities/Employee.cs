@@ -37,15 +37,15 @@ namespace Marshalls_LLC.Core.Entities
         [DefaultValue(0)]
         public string IdentificationNumber { get; set; }
         [DefaultValue(0)]
-        public double BaseSalary  { get; set; }
+        public decimal BaseSalary  { get; set; }
         [DefaultValue(0)]
-        public double ProductionBonus { get; set; }
+        public decimal ProductionBonus { get; set; }
         [DefaultValue(0)]
-        public double CompensationBonus  { get; set; }
+        public decimal CompensationBonus  { get; set; }
         [DefaultValue(0)]
-        public double Commission { get; set; }
+        public decimal Commission { get; set; }
         [DefaultValue(0)]
-        public double Contributions { get; set; }
+        public decimal Contributions { get; set; }
 
     }
 }

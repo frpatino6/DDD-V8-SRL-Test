@@ -42,5 +42,12 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <returns></returns>
         Task<List<Employee>> Get(EmployeeDTO employeeDTO);
 
+        /// <summary>
+        /// Gets all.
+        /// </summary>
+        /// <param name="employeeDTO">The employee dto.</param>
+        /// <returns></returns>
+        Task<List<Employee>> GetAll();
+
     }
 }

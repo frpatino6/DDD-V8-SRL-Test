@@ -8,6 +8,8 @@ namespace Marshalls_LLC.Api.Controllers
     using Marshalls_LLC.Core.Entities;
     using Marshalls_LLC.Core.Interfaces;
     using Microsoft.AspNetCore.Mvc;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     [Produces("application/json")]
@@ -32,6 +34,27 @@ namespace Marshalls_LLC.Api.Controllers
             this.employeeServices = employeeServices;
             this.mapper = mapper;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var allEmployees = await employeeServices.GetAll();
+                var result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
+
+                if (result.Count > 0)
+                    return Ok(result);
+                else
+                    return NotFound();
+            }
+            catch (System.Exception ex)
+            {
+
+                return BadRequest(ex);
+            }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] EmployeeDTO value)
         {

@@ -47,7 +47,12 @@ namespace Marshalls_LLC.Core.Services
 
         public Task<List<Employee>> Get(EmployeeDTO employeeDTO)
         {
-            throw new NotImplementedException();
+            return salaryRepository.Get(employeeDTO);
+        }
+
+        public Task<List<Employee>> GetAll()
+        {
+            return salaryRepository.GetAll();
         }
     }
 }

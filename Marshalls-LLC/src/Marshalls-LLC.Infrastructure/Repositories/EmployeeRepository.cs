@@ -55,6 +55,14 @@ namespace Marshalls_LLC.Infrastructure.Repositories
             return await query.ToListAsync();
         }
 
+        public async Task<List<Employee>> GetAll()
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                return await context.Employee.ToListAsync();
+            }
+        }
+
         /// <summary>
         /// Gets the full name of the employee by.
         /// </summary>
