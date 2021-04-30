@@ -40,4 +40,25 @@ export class EmployeeComponent implements OnInit {
     localStorage.setItem('data', JSON.stringify(this.dataSource));
     this.router.navigate(['./salaries_employees']);
   }
+
+  getSameOfficeAndSameGrade(employeeCode): void {
+    this.employeeServices.getReportByReporType(employeeCode, '1').subscribe(
+      (result) => {
+        this.dataSource = result;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    );
+  }
+  getSamePositionAndSameGrade(employeeCode): void {
+    this.employeeServices.getReportByReporType(employeeCode, '3').subscribe(
+      (result) => {
+        this.dataSource = result;
+      },
+      (err: HttpErrorResponse) => {
+        console.log(err);
+      }
+    );
+  }
 }

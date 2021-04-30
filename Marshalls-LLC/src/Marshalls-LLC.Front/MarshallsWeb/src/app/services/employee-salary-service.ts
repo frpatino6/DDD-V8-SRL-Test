@@ -23,7 +23,10 @@ export class EmployeeServices {
     const strlcl = this.strUrl + controler;
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header });
   }
-  public getLastEmployeesSalary(
+
+
+
+  public getReportByReporType(
     employeeCode: string,
     reportType: string
   ): Observable<EmployeeDTO> {
@@ -33,7 +36,7 @@ export class EmployeeServices {
     params.set('reportType', reportType);
 
     const controler = 'Employee';
-    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=5';
+    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType;
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header, params });
   }
 }

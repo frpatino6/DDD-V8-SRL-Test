@@ -12,6 +12,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
 import { EmployeeSalaryListComponent } from './components/employee-salary-list/employee-salary-list.component';
 import { EmployeeServices } from './services/employee-salary-service';
 import { HttpClientModule } from '@angular/common/http';
@@ -34,6 +35,7 @@ import { EmployeeLastSalarieComponent } from './components/employee-last-salarie
     MatMenuModule,
     MatToolbarModule,
     MatCardModule,
+    MatListModule,
     MatInputModule,
     BrowserAnimationsModule,
   ],
