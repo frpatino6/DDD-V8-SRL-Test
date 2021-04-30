@@ -14,9 +14,9 @@ namespace Marshalls_LLC.Core.Dto
         public int Month { get; set; }
         public int OfficeId { get; set; }
         public int DivisionId { get; set; }
-        public string DivisionName => Division.Name;
+        public string DivisionName => Division == null ? string.Empty : Division.Name;
         public Division Division { get; set; }
-        public string PositionName => Position.Name;
+        public string PositionName => Position == null ? "" : Position.Name;
         public Position Position { get; set; }
         public int PositionId { get; set; }
         public string EmployeeCode { get; set; }

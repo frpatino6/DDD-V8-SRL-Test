@@ -215,10 +215,10 @@ namespace Marshalls_LLC.Infrastructure.Repositories
 
         public Task<List<Employee>> GetLastEmployeeSalarie(string employeeCode)
         {
-            using (var context = DbContextFactory.Create()) {
-                var result =  context.Employee.FromSqlRaw("Sp_Get_Last_Employee_Salary").ToListAsync();
+           
+                var result = DbContextFactory.Create().Employee.FromSqlRaw($"EXECUTE  [dbo].[Sp_Get_Last_Employee_Salary] '5028'", employeeCode).ToListAsync();
                 return result;
-            }
+            
         }
     }
 }
