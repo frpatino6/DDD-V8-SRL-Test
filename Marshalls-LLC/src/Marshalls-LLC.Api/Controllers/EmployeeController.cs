@@ -37,11 +37,11 @@ namespace Marshalls_LLC.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string emplyeeCode = "", int? reportType = 0)
+        public async Task<IActionResult> Get(string employeeCode = "", int? reportType = 0)
         {
             try
             {
-                var allEmployees = await employeeServices.GetAll(emplyeeCode, reportType);
+                var allEmployees = await employeeServices.GetAll(employeeCode, reportType);
                 var result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
 
                 if (result.Count > 0)

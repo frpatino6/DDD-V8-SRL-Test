@@ -324,7 +324,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 	            order by month desc
 
 
-	            select a.employeecode,a.basesalary, a.basesalary/3 as bono
+	            select a.basesalary/3 as Bono, a.*
 	            from #Salaries as a
 	            where a.employeecode=@employeecode
             END 

@@ -19,6 +19,7 @@ export interface EmployeeDTO {
     contributions: number;
     otherIncome: number;
     totalSalary: number;
+    bono: number;
     divisionName: string;
     positionName: string;
 }

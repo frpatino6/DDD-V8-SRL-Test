@@ -1,0 +1,36 @@
+<app-tool-bar>
+</app-tool-bar>
+<div class="employee_code_report_input">
+    <mat-form-field>
+        <mat-label>Employee Code</mat-label>
+        <input matInput placeholder="Ex. 25411" #employeeCode value="">
+    </mat-form-field>
+    <button class="employee_code_report_button" (click)="getLastEmployeeSalary(employeeCode.value)" mat-stroked-button>Basic</button>
+</div>
+<table mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="NombreCompleto">
+        <th mat-header-cell *matHeaderCellDef> Nombre completo. </th>
+        <td mat-cell *matCellDef="let element"> {{element.employeeName}} {{element.employeeSurname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Month">
+        <th mat-header-cell *matHeaderCellDef> Mes. </th>
+        <td mat-cell *matCellDef="let element"> {{element.month}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="Year">
+        <th mat-header-cell *matHeaderCellDef> Año. </th>
+        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+    </ng-container>
+    <ng-container matColumnDef="Bono">
+        <th mat-header-cell *matHeaderCellDef> Bono. </th>
+        <td mat-cell *matCellDef="let element"> {{element.bono}} </td>
+    </ng-container>
+    <ng-container matColumnDef="SalarioTotal">
+        <th mat-header-cell *matHeaderCellDef> Salario Total. </th>
+        <td mat-cell *matCellDef="let element"> {{element.totalSalary}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

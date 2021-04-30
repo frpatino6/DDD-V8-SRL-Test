@@ -61,5 +61,6 @@ namespace Marshalls_LLC.Core.Dto
                 return this.BaseSalary + this.ProductionBonus + (CompensationBonus * 75 / 100) + OtherIncome - Contributions;
             }
         }
+        public decimal Bono { get; set; }
     }
 }

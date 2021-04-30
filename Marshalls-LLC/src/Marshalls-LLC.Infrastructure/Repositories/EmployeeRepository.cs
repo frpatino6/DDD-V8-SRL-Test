@@ -6,6 +6,7 @@ namespace Marshalls_LLC.Infrastructure.Repositories
     using Marshalls_LLC.Core.Entities;
     using Marshalls_LLC.Core.Interfaces;
     using Marshalls_LLC.Infrastructure.Data;
+    using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
     using RandomNameGeneratorLibrary;
     using System;
@@ -215,10 +216,11 @@ namespace Marshalls_LLC.Infrastructure.Repositories
 
         public Task<List<Employee>> GetLastEmployeeSalarie(string employeeCode)
         {
-           
-                var result = DbContextFactory.Create().Employee.FromSqlRaw($"EXECUTE  [dbo].[Sp_Get_Last_Employee_Salary] '5028'", employeeCode).ToListAsync();
-                return result;
-            
+            var code = new SqlParameter("employeeCode", employeeCode);
+
+            var result = DbContextFactory.Create().Employee.FromSqlRaw($"EXECUTE  [dbo].[Sp_Get_Last_Employee_Salary] @EmployeeCode", code).ToListAsync();
+            return result;
+
         }
     }
 }
