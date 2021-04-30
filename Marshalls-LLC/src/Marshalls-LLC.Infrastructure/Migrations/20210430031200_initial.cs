@@ -313,7 +313,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
             CREATE PROCEDURE [dbo].[Sp_Get_Last_Employee_Salary]
 	            @EmployeeCode nvarchar(10)
             AS
-            BEGIN
+             BEGIN
 	            IF OBJECT_ID (N'#Salaries', N'U') IS NOT NULL 
 	            drop table #Salaries
 
@@ -327,6 +327,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 	            select a.basesalary/3 as Bono, a.*
 	            from #Salaries as a
 	            where a.employeecode=@employeecode
+				order by a.month
             END 
         
             GO";

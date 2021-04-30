@@ -46,7 +46,6 @@ namespace Marshalls_LLC.Core.Entities
         [DefaultValue(0)]
         public decimal Commission { get; set; }
         [DefaultValue(0)]
-        public decimal Contributions { get; set; }
-        public decimal Bono { get; set; }
+        public decimal Contributions { get; set; }       
     }
 }
