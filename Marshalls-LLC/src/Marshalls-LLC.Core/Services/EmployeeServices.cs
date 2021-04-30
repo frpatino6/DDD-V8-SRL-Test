@@ -59,9 +59,12 @@ namespace Marshalls_LLC.Core.Services
                         return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
                     case 2:
                         return salaryRepository.GetByAllOfficeBySameGrade(emplyeeCode);
-
                     case 3:
                         return salaryRepository.GetByPositionAndGrade(emplyeeCode);
+                    case 4:
+                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
+                    case 5:
+                        return salaryRepository.GetLastEmployeeSalarie(emplyeeCode);
                 }
             }
             return salaryRepository.GetAll();

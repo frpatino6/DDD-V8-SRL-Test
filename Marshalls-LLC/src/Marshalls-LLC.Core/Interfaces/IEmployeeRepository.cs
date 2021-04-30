@@ -42,6 +42,11 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <returns></returns>
         Task<List<Employee>> Get(EmployeeDTO employeeDTO);
 
+        /// <summary>
+        /// Gets the by identifier.
+        /// </summary>
+        /// <param name="employeeCode">The employee code.</param>
+        /// <returns></returns>
         Task<Employee> GetById(string employeeCode);
 
         /// <summary>
@@ -80,6 +85,13 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
         Task<List<Employee>> GetByAllPuestoySameGrade(string employeeCode);
+
+        /// <summary>
+        /// Gets the last employee salarie.
+        /// </summary>
+        /// <param name="employeeCode">The employee code.</param>
+        /// <returns></returns>
+        Task<List<Employee>> GetLastEmployeeSalarie(string employeeCode);
 
     }
 }

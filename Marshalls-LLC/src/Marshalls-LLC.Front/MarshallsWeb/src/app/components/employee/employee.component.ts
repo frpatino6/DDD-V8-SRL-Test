@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { EmployeeServices } from 'src/app/services/employee-slaray-service';
+import { EmployeeServices } from 'src/app/services/employee-salary-service';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
 

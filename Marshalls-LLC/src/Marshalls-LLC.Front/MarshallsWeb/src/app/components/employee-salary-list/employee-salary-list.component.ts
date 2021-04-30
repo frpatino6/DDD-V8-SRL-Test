@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import * as _ from 'lodash';
-import { EmployeeServices } from '../../services/employee-slaray-service';
+import { EmployeeServices } from '../../services/employee-salary-service';
 
 @Component({
   selector: 'app-employee-salary-list',
