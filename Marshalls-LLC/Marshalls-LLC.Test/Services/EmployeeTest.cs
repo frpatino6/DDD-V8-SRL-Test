@@ -292,6 +292,54 @@ namespace Marshalls_LLC.Core.Services.Tests
         }
 
         [Test()]
+        public async Task GetAllSameEmployeeAndOfficeAndGrade()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = await employeeServices.GetAll("71185",1);
+
+            Assert.IsTrue(result.Count > 0);
+        }
+
+        [Test()]
+        public async Task GetAllSameEmployeeAndPositionAndGrade()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = await employeeServices.GetAll("71185", 3);
+
+            Assert.IsTrue(result.Count > 0);
+        }
+
+        [Test()]
+        public async Task GetLastThreeSalarieByEmpoyee()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = await employeeServices.GetAll("71185", 5);
+
+            Assert.IsTrue(result.Count > 0);
+        }
+
+        [Test()]
         public async Task GetAllReportTypeNotValidTestAsync()
         {
             Exception expectedException = null;
