@@ -18,10 +18,6 @@ namespace Marshalls_LLC.Core.Services.Tests
     public class EmployeeTest
     {
         private IEmployeeServices employeeServices;
-        private IEmployeeRepository EmployeeRepository;
-        private IEmployeeDataValidations employeeDataValidations;
-        private EmployeeController employeeControlle;
-
 
         [SetUp]
         public void SetUp()
@@ -266,7 +262,6 @@ namespace Marshalls_LLC.Core.Services.Tests
         [Test()]
         public async Task CreateEmployeeSuccesTestAsync()
         {
-            Exception expectedException = null;
 
             var services = new ServiceCollection();
             services.AddTransient<IEmployeeServices, EmployeeServices>();
@@ -281,9 +276,77 @@ namespace Marshalls_LLC.Core.Services.Tests
         }
 
         [Test()]
-        public void GetAllTest()
+        public async Task GetAllTestAsync()
         {
-            Assert.Fail();
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = await employeeServices.GetAll();
+
+            Assert.IsTrue(result.Count > 0);
         }
+
+        [Test()]
+        public async Task GetAllReportTypeNotValidTestAsync()
+        {
+            Exception expectedException = null;
+
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            try
+            {
+                var result = await employeeServices.GetAll("43201", 6);
+            }
+            catch (Exception ex)
+            {
+                expectedException = ex;
+            }
+
+            Assert.IsTrue(expectedException is Exception);
+        }
+
+        [Test()]
+        public void GetEmployeeSameOfficeAndGrade()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = employeeServices.GetEmployeeGroupOffice(11);
+
+            Assert.IsTrue(result.Count > 0);
+        }
+
+        [Test()]
+        public  void GetEmployeeSamePositionAndGrade()
+        {
+            var services = new ServiceCollection();
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = employeeServices.GetEmployeeGroupPosition(17);
+
+            Assert.IsTrue(result.Count > 0);
+        }
+
     }
 }

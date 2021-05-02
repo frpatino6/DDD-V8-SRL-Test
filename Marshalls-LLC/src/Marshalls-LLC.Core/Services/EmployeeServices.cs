@@ -51,24 +51,32 @@ namespace Marshalls_LLC.Core.Services
         /// <returns></returns>
         public Task<List<Employee>> GetAll(string emplyeeCode = "", int? reportType = 0)
         {
+            if (reportType > 5)
+                throw new Exception("Opción de reporte no válido");
+
             if (!string.IsNullOrEmpty(emplyeeCode) && reportType.HasValue)
             {
                 switch (reportType)
                 {
                     case 1:
-                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
-                    case 2:
-                        return salaryRepository.GetByAllOfficeBySameGrade(emplyeeCode);
+                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);                   
                     case 3:
-                        return salaryRepository.GetByPositionAndGrade(emplyeeCode);
-                    case 4:
-                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
+                        return salaryRepository.GetByPositionAndGrade(emplyeeCode);                                          
                     case 5:
-                        return salaryRepository.GetLastEmployeeSalarie(emplyeeCode);
+                        return salaryRepository.GetLastEmployeeSalarie(emplyeeCode);                       
                 }
             }
             return salaryRepository.GetAll();
         }
 
+        public List<EmployeePositionGroupDTO> GetEmployeeGroupPosition(int grade)
+        {
+            return salaryRepository.GetByAllPositionAndSameGrade(grade);
+        }
+
+        public List<EmployeePositionGroupDTO> GetEmployeeGroupOffice(int grade)
+        {
+            return salaryRepository.GetByAllOfficeBySameGrade(grade);
+        }
     }
 }

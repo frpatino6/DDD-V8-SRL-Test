@@ -23,5 +23,21 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <returns></returns>
         Task<List<Employee>> GetAll(string emplyeeCode = "", int? reportType = 0);
 
+        /// <summary>
+        /// Gets the employee group position.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <param name="emplyeeCode">The emplyee code.</param>
+        /// <returns></returns>
+        List<EmployeePositionGroupDTO> GetEmployeeGroupPosition(int grade);
+
+        /// <summary>
+        /// Gets the employee group office.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <param name="emplyeeCode">The emplyee code.</param>
+        /// <returns></returns>
+        List<EmployeePositionGroupDTO> GetEmployeeGroupOffice(int grade);
+
     }
 }

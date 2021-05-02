@@ -77,14 +77,14 @@ namespace Marshalls_LLC.Core.Interfaces
         /// </summary>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByAllOfficeBySameGrade(string employeeCode);
+        List<EmployeePositionGroupDTO> GetByAllOfficeBySameGrade(int grade);
 
         /// <summary>
         /// Gets the by all puestoy same grade.
         /// </summary>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByAllPuestoySameGrade(string employeeCode);
+        List<EmployeePositionGroupDTO> GetByAllPositionAndSameGrade(int grade);
 
         /// <summary>
         /// Gets the last employee salarie.
