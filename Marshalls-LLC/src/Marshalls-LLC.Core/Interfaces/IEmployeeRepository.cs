@@ -33,7 +33,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <param name="name">The name.</param>
         /// <param name="sureName">Name of the sure.</param>
         /// <returns></returns>
-        int GetPeriodMonthYearByEmployee(int id, int month, int year);
+        int GetPeriodMonthYearByEmployee(string  employeeCode, int month, int year);
 
         /// <summary>
         /// Gets the specified employee dto.

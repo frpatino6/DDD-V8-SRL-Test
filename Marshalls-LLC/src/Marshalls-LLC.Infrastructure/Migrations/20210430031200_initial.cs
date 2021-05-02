@@ -285,7 +285,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
             GO
             CREATE FUNCTION [dbo].[Quantity_Of_Salary_By_Period]
                         (
-	                        @Id int,
+	                        @EmployeeCode nvarchar(10),
 	                        @Month int,
 	                        @Year int
                         )
@@ -298,7 +298,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 	                          
 	                        SELECT @result = count(*)
 	                        from  [dbo].[Employee]
-	                        where [Id]=@Id and [Month]= @Month and [Year]= @Year
+	                        where [EmployeeCode]=@EmployeeCode and [Month]= @Month and [Year]= @Year
 
 	                          
 	                        RETURN @result

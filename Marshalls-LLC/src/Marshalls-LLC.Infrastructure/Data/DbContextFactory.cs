@@ -43,8 +43,18 @@ namespace Marshalls_LLC.Infrastructure.Data
         public static AppDbContext Create()
         {
             DbContextOptionsBuilder<AppDbContext> optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
-            optionsBuilder.UseSqlServer(ConnectionStrings);
+
+            if (string.IsNullOrEmpty(ConnectionStrings))
+                optionsBuilder.UseSqlServer(setConnectionStringHardCode());
+            else
+                optionsBuilder.UseSqlServer(ConnectionStrings);
+
             return new AppDbContext(optionsBuilder.Options);
+        }
+
+        private static string setConnectionStringHardCode()
+        {
+            return "Data Source=DESARROLLO1\\DEVELOPER;Initial Catalog=Marshalls-LLC;Persist Security Info=True;User ID=sa;Password=;Trusted_Connection=true";
         }
     }
 }

@@ -118,7 +118,7 @@ namespace Marshalls_LLC.Infrastructure.Data
         }
 
         [DbFunction("Quantity_Of_Salary_By_Period", "dbo")]
-        public static int Quantity_Of_Salary_By_Period(int id, int month, int year)
+        public static int Quantity_Of_Salary_By_Period(string id, int month, int year)
         {
             throw new Exception();
         }

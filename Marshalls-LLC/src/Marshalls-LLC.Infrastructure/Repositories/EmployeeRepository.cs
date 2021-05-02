@@ -206,11 +206,11 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <param name="month"></param>
         /// <param name="year"></param>
         /// <returns></returns>
-        public int GetPeriodMonthYearByEmployee(int id, int month, int year)
+        public int GetPeriodMonthYearByEmployee(string employeeCode, int month, int year)
         {
             using (var context = DbContextFactory.Create())
             {
-                return context.Employee.Select(x => AppDbContext.Quantity_Of_Salary_By_Period(id, month, year)).FirstOrDefault();
+                return context.Employee.Select(x => AppDbContext.Quantity_Of_Salary_By_Period(employeeCode, month, year)).FirstOrDefault();
             }
         }
 
