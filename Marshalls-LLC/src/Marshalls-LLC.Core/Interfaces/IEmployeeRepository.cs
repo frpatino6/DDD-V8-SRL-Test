@@ -17,7 +17,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// </summary>
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
-        Task<int> CreateSalary(Employee salary);
+        Task<int> CreateSalary(List<Employee> employees);
 
         /// <summary>
         /// Gets the full name of the employee by.

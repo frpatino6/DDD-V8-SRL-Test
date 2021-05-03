@@ -26,14 +26,14 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<int> CreateSalary(Employee employee)
+        public async Task<int> CreateSalary(List<Employee> employee)
         {
             using (var context = DbContextFactory.Create())
-            {
-                employee.Id = 0;
-                context.Employee.Add(employee);
+            {                
+                context.Employee.AddRange(employee);
                 return await context.SaveChangesAsync();
             }
+
         }
 
         /// <summary>

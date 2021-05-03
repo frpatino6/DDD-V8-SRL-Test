@@ -9,7 +9,7 @@ namespace Marshalls_LLC.Core.Entities
     /// <summary>
     /// Salary entity
     /// </summary>
-    public class Employee
+    public class Employee: ICloneable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]
@@ -54,6 +54,11 @@ namespace Marshalls_LLC.Core.Entities
         [DefaultValue(0)]
         public decimal Commission { get; set; }
         [DefaultValue(0)]
-        public decimal Contributions { get; set; }       
+        public decimal Contributions { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

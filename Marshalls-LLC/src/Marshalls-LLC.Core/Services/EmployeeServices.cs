@@ -36,13 +36,48 @@ namespace Marshalls_LLC.Core.Services
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<int> CreateEmployee(Employee employee)
+        public Task<int> CreateEmployee(Employee employee, int initMonth, int countPeriodo, int initYear)
         {
             if (this.employeeDataValidations.ValidateEmpoyeeData(employee))
             {
-                return salaryRepository.CreateSalary(employee);
+                return salaryRepository.CreateSalary(CreateSalaryPeriodo(employee, initMonth, countPeriodo, initYear));
             }
-            return null;
+            else
+                throw new Exception($"Error creando periodo para el empleado {employee.EmployeeName} {employee.EmployeeSurname}");
+        }
+
+        /// <summary>
+        /// Creates the salary periodo.
+        /// </summary>
+        /// <returns>a List for each periodo employee</returns>
+        private List<Employee> CreateSalaryPeriodo(Employee employee, int initMonth, int countPeriodo, int initYear)
+        {
+            int year = initYear;
+            int month = initMonth;
+            Employee employeePeriodo;
+
+            List<Employee> listNewEmployeePeriodo = new List<Employee>();
+
+            for (int i = 0; i < countPeriodo; i++)
+            {
+                if (month <= 12)
+                {
+                    employeePeriodo = (Employee)employee.Clone();
+                    employeePeriodo.Month = month;
+                    employeePeriodo.Year = year;
+                    listNewEmployeePeriodo.Add(employeePeriodo);
+                }
+                month++;
+
+                if (month > 12)
+                {
+                    year++;
+                    month = 1;
+                }
+            }
+
+            return listNewEmployeePeriodo;
+
         }
 
         /// <summary>
@@ -59,11 +94,11 @@ namespace Marshalls_LLC.Core.Services
                 switch (reportType)
                 {
                     case 1:
-                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);                   
+                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
                     case 3:
-                        return salaryRepository.GetByPositionAndGrade(emplyeeCode);                                          
+                        return salaryRepository.GetByPositionAndGrade(emplyeeCode);
                     case 5:
-                        return salaryRepository.GetLastEmployeeSalarie(emplyeeCode);                       
+                        return salaryRepository.GetLastEmployeeSalarie(emplyeeCode);
                 }
             }
             return salaryRepository.GetAll();

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Marshalls_LLC.Core.Dto
@@ -15,8 +16,10 @@ namespace Marshalls_LLC.Core.Dto
         public int OfficeId { get; set; }
         public int DivisionId { get; set; }
         public string DivisionName => Division == null ? string.Empty : Division.Name;
+        [JsonIgnore]
         public Division Division { get; set; }
         public string PositionName => Position == null ? "" : Position.Name;
+        [JsonIgnore]
         public Position Position { get; set; }
         public int PositionId { get; set; }
         public string EmployeeCode { get; set; }

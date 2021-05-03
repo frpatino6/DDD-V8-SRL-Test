@@ -30,6 +30,7 @@ namespace Marshalls_LLC.Core.Services.Tests
         /// </summary>
         private static Employee createExistingEmployeeData()
         {
+
             return new Employee()
             {
                 BaseSalary = 2500,
@@ -141,7 +142,7 @@ namespace Marshalls_LLC.Core.Services.Tests
             };
         }
 
-        private static Employee createNewEmployeeSuccesData()
+        private static Employee createNewEmployeeSuccesData(string employeeName)
         {
             return new Employee()
             {
@@ -154,7 +155,7 @@ namespace Marshalls_LLC.Core.Services.Tests
                 Contributions = 0,
                 DivisionId = 1,
                 EmployeeCode = "5028",
-                EmployeeName = "Fernando",
+                EmployeeName = employeeName,
                 EmployeeSurname = "Rodriguez Patiño",
                 Grade = 13,
                 IdentificationNumber = "523647899",
@@ -184,7 +185,7 @@ namespace Marshalls_LLC.Core.Services.Tests
 
             try
             {
-                employeeServices.CreateEmployee(createExistingEmployeeData());
+                employeeServices.CreateEmployee(createExistingEmployeeData(), 5, 5, 2020);
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -214,7 +215,7 @@ namespace Marshalls_LLC.Core.Services.Tests
 
             try
             {
-                employeeServices.CreateEmployee(createExistingEmployeeSameYearMonthData());
+                employeeServices.CreateEmployee(createExistingEmployeeSameYearMonthData(), 5, 5, 2020);
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -244,7 +245,7 @@ namespace Marshalls_LLC.Core.Services.Tests
 
             try
             {
-                employeeServices.CreateEmployee(createExistingEmployeeYearErrorData());
+                employeeServices.CreateEmployee(createExistingEmployeeYearErrorData(), 5, 5, 2020);
                 Assert.Fail();
             }
             catch (Exception ex)
@@ -260,9 +261,29 @@ namespace Marshalls_LLC.Core.Services.Tests
         /// Creates the employee error month test.
         /// </summary>
         [Test()]
-        public async Task CreateEmployeeSuccesTestAsync()
+        public async Task CreateEmployeeSuccesTestWithSameYearAsync()
         {
+            int numPeriodosToCreateEmployeeSalary = 5;
+            var services = new ServiceCollection();
 
+            services.AddTransient<IEmployeeServices, EmployeeServices>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+            services.AddTransient<IEmployeeDataValidations, EmployeeDataValidations>();
+
+            var serviceProvider = services.BuildServiceProvider();
+            employeeServices = serviceProvider.GetService<IEmployeeServices>();
+
+            var result = await employeeServices.CreateEmployee(createNewEmployeeSuccesData("Test SameYear"), 5, numPeriodosToCreateEmployeeSalary, 2020);
+            Assert.AreEqual(result, numPeriodosToCreateEmployeeSalary);
+        }
+
+        /// <summary>
+        /// Creates the employee error month test.
+        /// </summary>
+        [Test()]
+        public async Task CreateEmployeeSuccesTestWithDiferentYearAsync()
+        {
+            int numPeriodosToCreateEmployeeSalary = 5;
             var services = new ServiceCollection();
             services.AddTransient<IEmployeeServices, EmployeeServices>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
@@ -271,8 +292,8 @@ namespace Marshalls_LLC.Core.Services.Tests
             var serviceProvider = services.BuildServiceProvider();
             employeeServices = serviceProvider.GetService<IEmployeeServices>();
 
-            var result = await employeeServices.CreateEmployee(createNewEmployeeSuccesData());
-            Assert.AreEqual(1, result);
+            var result = await employeeServices.CreateEmployee(createNewEmployeeSuccesData("Test DiferentYear"), 9, numPeriodosToCreateEmployeeSalary, 2020);
+            Assert.AreEqual(result, numPeriodosToCreateEmployeeSalary);
         }
 
         [Test()]
@@ -302,7 +323,7 @@ namespace Marshalls_LLC.Core.Services.Tests
             var serviceProvider = services.BuildServiceProvider();
             employeeServices = serviceProvider.GetService<IEmployeeServices>();
 
-            var result = await employeeServices.GetAll("71185",1);
+            var result = await employeeServices.GetAll("71185", 1);
 
             Assert.IsTrue(result.Count > 0);
         }
@@ -381,7 +402,7 @@ namespace Marshalls_LLC.Core.Services.Tests
         }
 
         [Test()]
-        public  void GetEmployeeSamePositionAndGrade()
+        public void GetEmployeeSamePositionAndGrade()
         {
             var services = new ServiceCollection();
             services.AddTransient<IEmployeeServices, EmployeeServices>();

@@ -14,7 +14,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// </summary>
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
-        Task<int> CreateEmployee(Employee salary);
+        Task<int> CreateEmployee(Employee employee, int initMonth, int countPeriodo, int initYear);
 
         /// <summary>
         /// Gets all.
@@ -37,7 +37,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <param name="grade">The grade.</param>
         /// <param name="emplyeeCode">The emplyee code.</param>
         /// <returns></returns>
-        List<EmployeePositionGroupDTO> GetEmployeeGroupOffice(int grade);
+        List<EmployeePositionGroupDTO> GetEmployeeGroupOffice(int grade);        
 
     }
 }
