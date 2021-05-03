@@ -18,8 +18,15 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { EmployeeSalaryListComponent } from './components/employee-salary-list/employee-salary-list.component';
 import { EmployeeServices } from './services/employee-salary-service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EmployeeLastSalarieComponent } from './components/employee-last-salarie/employee-last-salarie.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { OfficeServices } from './services/officeServices';
+import { PositionServices } from './services/positionServicesy';
+import { DivisionServices } from './services/divisionServices';
 
 @NgModule({
   declarations: [
@@ -31,10 +38,15 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     AddEmployeeComponent,
   ],
   imports: [
+    FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     MatGridListModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSelectModule,
     MatButtonModule,
     MatFormFieldModule,
     MatTableModule,
@@ -42,18 +54,26 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     MatToolbarModule,
     MatCardModule,
     MatListModule,
+    MatDatepickerModule,
     MatInputModule,
     BrowserAnimationsModule,
   ],
   exports: [
     MatButtonModule,
+    MatCardModule,
     MatMenuModule,
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
+    MatDatepickerModule,
     MatFormFieldModule,
   ],
-  providers: [EmployeeServices],
+  providers: [
+    EmployeeServices,
+    OfficeServices,
+    PositionServices,
+    DivisionServices,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
