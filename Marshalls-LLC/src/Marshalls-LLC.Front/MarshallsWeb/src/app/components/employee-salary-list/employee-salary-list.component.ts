@@ -1,7 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as _ from 'lodash';
 import { EmployeeServices } from '../../services/employee-salary-service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-employee-salary-list',
@@ -9,8 +11,7 @@ import { EmployeeServices } from '../../services/employee-salary-service';
   styleUrls: ['./employee-salary-list.component.scss'],
 })
 export class EmployeeSalaryListComponent implements OnInit {
-  dataSource: any;
-  dataSourceGroupBy: any;
+  dataSource = new MatTableDataSource([]);
   displayedColumns = [
     'NombreCompleto',
     'Division',
@@ -20,24 +21,32 @@ export class EmployeeSalaryListComponent implements OnInit {
     'NumeroIdentificacion',
     'SalarioTotal',
   ];
-  constructor(private employeeServices: EmployeeServices) {}
+  constructor(
+    private employeeServices: EmployeeServices,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.groupListByOffice();
+    const employeeCode = this.route.snapshot.paramMap.get('employeeCode');
+    const grade = this.route.snapshot.paramMap.get('grade');
+
+    this.groupListByOffice(employeeCode, grade);
   }
 
-  isGroup(index, item): boolean{
+  isGroup(index, item): boolean {
     return item.officeId;
   }
 
-  groupListByOffice(): void {
-    this.dataSource = JSON.parse(localStorage.getItem('data'));
-
-    const dataSourceGroupBy = _(this.dataSource)
-      .groupBy((x) => x.officeId)
-      .map((value, key) => ({ officeId: key, employees: value }))
-      .value();
-
-    console.log(dataSourceGroupBy);
+  groupListByOffice(employeeCode, grade): void {
+    this.employeeServices
+      .getReportGroupByType(employeeCode, '2', grade)
+      .subscribe(
+        (result) => {
+          this.dataSource = new MatTableDataSource([]);
+        },
+        (err: HttpErrorResponse) => {
+          console.log(err);
+        }
+      );
   }
 }

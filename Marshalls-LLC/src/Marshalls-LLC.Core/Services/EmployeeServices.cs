@@ -104,11 +104,21 @@ namespace Marshalls_LLC.Core.Services
             return salaryRepository.GetAll();
         }
 
+        /// <summary>
+        /// Gets the employee group position.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
         public List<EmployeePositionGroupDTO> GetEmployeeGroupPosition(int grade)
         {
             return salaryRepository.GetByAllPositionAndSameGrade(grade);
         }
 
+        /// <summary>
+        /// Gets the employee group office.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
         public List<EmployeePositionGroupDTO> GetEmployeeGroupOffice(int grade)
         {
             return salaryRepository.GetByAllOfficeBySameGrade(grade);

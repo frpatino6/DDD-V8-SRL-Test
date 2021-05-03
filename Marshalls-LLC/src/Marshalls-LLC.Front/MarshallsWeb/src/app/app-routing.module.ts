@@ -7,11 +7,16 @@ import { EmployeeLastSalarieComponent } from './components/employee-last-salarie
 const routes: Routes = [];
 
 @NgModule({
-  imports: [RouterModule.forRoot([
-    { path: '', component: EmployeeComponent },
-    { path: 'salaries_employees', component: EmployeeSalaryListComponent },
-    { path: 'employee_last_salary', component: EmployeeLastSalarieComponent }
-  ])],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot([
+      { path: '', component: EmployeeComponent },
+      {
+        path: 'salaries_employees/:employeeCode/:grade',
+        component: EmployeeSalaryListComponent,
+      },
+      { path: 'employee_last_salary', component: EmployeeLastSalarieComponent },
+    ]),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

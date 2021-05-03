@@ -36,9 +36,8 @@ export class EmployeeComponent implements OnInit {
       }
     );
   }
-  groupListByOffice(): void {
-    localStorage.setItem('data', JSON.stringify(this.dataSource));
-    this.router.navigate(['./salaries_employees']);
+  groupListByOffice(employeeCode, grade): void {
+    this.router.navigate(['./salaries_employees', employeeCode, grade]);
   }
 
   getSameOfficeAndSameGrade(employeeCode): void {

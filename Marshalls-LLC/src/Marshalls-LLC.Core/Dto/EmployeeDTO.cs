@@ -1,10 +1,6 @@
 ﻿using Marshalls_LLC.Core.Entities;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace Marshalls_LLC.Core.Dto
 {
@@ -14,6 +10,7 @@ namespace Marshalls_LLC.Core.Dto
         public int Year { get; set; }
         public int Month { get; set; }
         public int OfficeId { get; set; }
+        public string OfficeName => Office == null ? string.Empty : Office.Name;
         public int DivisionId { get; set; }
         public string DivisionName => Division == null ? string.Empty : Division.Name;
         [JsonIgnore]
@@ -21,6 +18,8 @@ namespace Marshalls_LLC.Core.Dto
         public string PositionName => Position == null ? "" : Position.Name;
         [JsonIgnore]
         public Position Position { get; set; }
+        [JsonIgnore]
+        public Office Office { get; set; }
         public int PositionId { get; set; }
         public string EmployeeCode { get; set; }
         public string EmployeeName { get; set; }
@@ -68,7 +67,7 @@ namespace Marshalls_LLC.Core.Dto
         {
             get
             {
-                return BaseSalary/3;
+                return BaseSalary / 3;
             }
         }
     }

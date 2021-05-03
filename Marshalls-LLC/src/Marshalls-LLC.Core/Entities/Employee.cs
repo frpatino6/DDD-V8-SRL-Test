@@ -3,6 +3,7 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Marshalls_LLC.Core.Entities
 {
@@ -18,10 +19,12 @@ namespace Marshalls_LLC.Core.Entities
         public int Month { get; set; }
         public int OfficeId { get; set; }
 
+
         [ForeignKey(nameof(OfficeId))]
         [InverseProperty("Employees")]
         public  Office Office { get; set; }
 
+        [JsonIgnore]
         public Division Division { get; set; }
         public int DivisionId { get; set; }
         public int PositionId { get; set; }

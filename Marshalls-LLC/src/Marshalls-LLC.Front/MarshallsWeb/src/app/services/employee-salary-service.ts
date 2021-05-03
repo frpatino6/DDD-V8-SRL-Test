@@ -24,8 +24,6 @@ export class EmployeeServices {
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header });
   }
 
-
-
   public getReportByReporType(
     employeeCode: string,
     reportType: string
@@ -37,6 +35,22 @@ export class EmployeeServices {
 
     const controler = 'Employee';
     const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType;
+    return this.http.get<EmployeeDTO>(strlcl, { headers: this.header, params });
+  }
+
+  public getReportGroupByType(
+    employeeCode: string,
+    reportType: string,
+    grade: number
+  ): Observable<EmployeeDTO> {
+    const params = new HttpParams().set('logNamespace', employeeCode);
+
+    params.set('emplyeeCode', employeeCode);
+    params.set('reportType', reportType);
+    params.set('grade', grade.toString());
+
+    const controler = 'Employee';
+    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType + '&grade=' + grade;
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header, params });
   }
 }

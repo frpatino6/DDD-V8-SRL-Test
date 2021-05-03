@@ -37,12 +37,29 @@ namespace Marshalls_LLC.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string employeeCode = "", int? reportType = 0)
+        public async Task<IActionResult> Get(string employeeCode = "", int? reportType = 0, int? grade = 0)
         {
             try
             {
-                var allEmployees = await employeeServices.GetAll(employeeCode, reportType);
-                var result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
+                List<Employee> allEmployees = null;
+                List<EmployeeDTO> result = null;
+                List<EmployeePositionGroupDTO> allEmployeesGroup;
+
+                if (reportType == 2)
+                {
+                    allEmployeesGroup = employeeServices.GetEmployeeGroupOffice(grade.Value);
+                    return Ok(allEmployeesGroup);
+                }
+
+                if (reportType == 4)
+                {
+                    allEmployeesGroup = employeeServices.GetEmployeeGroupPosition(grade.Value);
+                    return Ok(allEmployeesGroup);
+                }
+
+                allEmployees = await employeeServices.GetAll(employeeCode, reportType);
+                result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
+
 
                 if (result.Count > 0)
                     return Ok(result);
@@ -64,6 +81,7 @@ namespace Marshalls_LLC.Api.Controllers
                 Employee newEmployee = new Employee();
 
                 newEmployee = mapper.Map<Employee>(value);
+
                 var recordsAffected = await employeeServices.CreateEmployee(newEmployee, initialMonth, numPeriodos, initYear);
 
                 if (recordsAffected > 0)

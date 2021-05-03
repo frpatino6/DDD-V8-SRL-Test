@@ -46,7 +46,7 @@
         <th mat-header-cell *matHeaderCellDef> Actions </th>
         <td mat-cell *matCellDef="let row">
             <button class='buttonRow' mat-raised-button (click)="getSameOfficeAndSameGrade(row.employeeCode)">1</button>
-            <button class='buttonRow' mat-raised-button (click)="groupListByOffice()"> 2</button>
+            <button class='buttonRow' mat-raised-button (click)="groupListByOffice(row.employeeCode,row.grade)"> 2</button>
             <button class='buttonRow' mat-raised-button (click)="getSamePositionAndSameGrade(row.employeeCode)"> 3</button>
             <button class='buttonRow' mat-raised-button> 4</button>
         </td>
