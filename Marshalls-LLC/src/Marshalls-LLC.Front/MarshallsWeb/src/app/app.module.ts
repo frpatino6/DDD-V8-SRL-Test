@@ -17,6 +17,7 @@ import { EmployeeSalaryListComponent } from './components/employee-salary-list/e
 import { EmployeeServices } from './services/employee-salary-service';
 import { HttpClientModule } from '@angular/common/http';
 import { EmployeeLastSalarieComponent } from './components/employee-last-salarie/employee-last-salarie.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { EmployeeLastSalarieComponent } from './components/employee-last-salarie
     ToolBarComponent,
     EmployeeSalaryListComponent,
     EmployeeLastSalarieComponent,
+    AddEmployeeComponent,
   ],
   imports: [
     HttpClientModule,
