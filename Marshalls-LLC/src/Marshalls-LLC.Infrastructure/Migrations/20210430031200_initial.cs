@@ -107,9 +107,9 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "A" },
-                    { 2, "B" },
-                    { 3, "C" }
+                    { 1, "Recursos Humanos" },
+                    { 2, "IT" },
+                    { 3, "Gerencia en tecnologia" }
                 });
 
             migrationBuilder.InsertData(

@@ -32,9 +32,9 @@ namespace Marshalls_LLC.Infrastructure.Data
             modelBuilder.Entity<Position>().HasData(new Position[] { positionCargoAssistant, positionCargoHead, positionCargoManager });
 
 
-            var officeA = new Office() { Id = 1, Name = "A" };
-            var officeB = new Office() { Id = 2, Name = "B" };
-            var officeC = new Office() { Id = 3, Name = "C" };
+            var officeA = new Office() { Id = 1, Name = "Recursos Humanos" };
+            var officeB = new Office() { Id = 2, Name = "IT" };
+            var officeC = new Office() { Id = 3, Name = "Gerencia en tecnologia" };
             modelBuilder.Entity<Office>().HasData(new Office[] { officeA, officeB, officeC });
             
 
@@ -46,7 +46,7 @@ namespace Marshalls_LLC.Infrastructure.Data
 
                 entity.HasOne(d => d.Office)
                .WithMany(p => p.Employees)
-               .HasForeignKey(d => d.PositionId);
+               .HasForeignKey(d => d.OfficeId);
             });
             //seed employee
             EmployeeSeedAsync(modelBuilder);

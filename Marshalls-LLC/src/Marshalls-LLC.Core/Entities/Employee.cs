@@ -10,7 +10,7 @@ namespace Marshalls_LLC.Core.Entities
     /// <summary>
     /// Salary entity
     /// </summary>
-    public class Employee: ICloneable
+    public class Employee : ICloneable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]
@@ -19,19 +19,20 @@ namespace Marshalls_LLC.Core.Entities
         public int Month { get; set; }
         public int OfficeId { get; set; }
 
-
         [ForeignKey(nameof(OfficeId))]
         [InverseProperty("Employees")]
-        public  Office Office { get; set; }
+        public Office Office { get; set; }
 
         [JsonIgnore]
+        [ForeignKey(nameof(DivisionId))]
+        [InverseProperty("Employees")]
         public Division Division { get; set; }
         public int DivisionId { get; set; }
         public int PositionId { get; set; }
 
         [ForeignKey(nameof(PositionId))]
         [InverseProperty("Employees")]
-        public virtual Position Position { get; set; }
+        public Position Position { get; set; }
 
         [MaxLength(10)]
         public string EmployeeCode { get; set; }
