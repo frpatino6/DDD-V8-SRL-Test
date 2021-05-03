@@ -13,6 +13,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { EmployeeSalaryListComponent } from './components/employee-salary-list/employee-salary-list.component';
 import { EmployeeServices } from './services/employee-salary-service';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,7 +34,9 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    MatGridListModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatTableModule,
     MatMenuModule,
     MatToolbarModule,
@@ -47,6 +51,7 @@ import { AddEmployeeComponent } from './components/add-employee/add-employee.com
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [EmployeeServices],
   bootstrap: [AppComponent],

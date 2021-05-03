@@ -2,34 +2,35 @@
 using Marshalls_LLC.Core.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Marshalls_LLC.Core.Services
 {
-    public class OfficeServices : IOfficeServices
+    public class PositionServices : IPositionServices
     {
         /// <summary>
         /// The office repository
         /// </summary>
-        private readonly IOfficeRepository officeRepository;
+        private readonly IPositionRepository positionRepository;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="OfficeServices"/> class.
+        /// Initializes a new instance of the <see cref="PositionServices"/> class.
         /// </summary>
         /// <param name="officeRepository">The office repository.</param>
-        public OfficeServices(IOfficeRepository officeRepository)
+        public PositionServices(IPositionRepository positionRepository)
         {
-            this.officeRepository = officeRepository;
+            this.positionRepository = positionRepository;
         }
 
         /// <summary>
-        /// Gets the offices.
+        /// Gets the positions.
         /// </summary>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Task<List<Office>> GetOffices()
+        public async Task<List<Position>> GetPositions()
         {
-            return officeRepository.GetOffices();
+            return await positionRepository.GetPositions();
         }
     }
 }

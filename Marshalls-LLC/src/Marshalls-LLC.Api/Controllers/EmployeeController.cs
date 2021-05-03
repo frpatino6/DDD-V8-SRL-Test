@@ -3,7 +3,6 @@
 namespace Marshalls_LLC.Api.Controllers
 {
     using AutoMapper;
-    using Marshalls_LLC.Api.Mapper;
     using Marshalls_LLC.Core.Dto;
     using Marshalls_LLC.Core.Entities;
     using Marshalls_LLC.Core.Interfaces;
@@ -24,6 +23,9 @@ namespace Marshalls_LLC.Api.Controllers
         /// </summary>
         private readonly IEmployeeServices employeeServices;
 
+        /// <summary>
+        /// The mapper
+        /// </summary>
         private readonly IMapper mapper;
 
         /// <summary>
