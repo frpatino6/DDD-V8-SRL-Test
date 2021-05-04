@@ -18,18 +18,15 @@ namespace Marshalls_LLC.Core.Entities
         public int Year { get; set; }
         public int Month { get; set; }
         public int OfficeId { get; set; }
-
         [ForeignKey(nameof(OfficeId))]
         [InverseProperty("Employees")]
         public Office Office { get; set; }
-
         [JsonIgnore]
         [ForeignKey(nameof(DivisionId))]
         [InverseProperty("Employees")]
         public Division Division { get; set; }
         public int DivisionId { get; set; }
         public int PositionId { get; set; }
-
         [ForeignKey(nameof(PositionId))]
         [InverseProperty("Employees")]
         public Position Position { get; set; }

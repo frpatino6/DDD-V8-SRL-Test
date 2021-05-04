@@ -8,6 +8,6 @@ namespace Marshalls_LLC.Core.Entities
     public  class Office: BaseEntity
     {
         [InverseProperty(nameof(Employee.Office))]
-        public  ICollection<Employee> Employees { get; set; }
+        public  virtual ICollection<Employee> Employees { get; set; }
     }
 }
