@@ -8,7 +8,6 @@ namespace Marshalls_LLC.Infrastructure.Repositories
     using Marshalls_LLC.Infrastructure.Data;
     using Microsoft.Data.SqlClient;
     using Microsoft.EntityFrameworkCore;
-    using RandomNameGeneratorLibrary;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -26,14 +25,14 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public async Task<int> CreateSalary(Employee employee)
+        public async Task<int> CreateSalary(List<Employee> employee)
         {
             using (var context = DbContextFactory.Create())
             {
-                employee.Id = 0;
-                context.Employee.Add(employee);
+                context.Employee.AddRange(employee);
                 return await context.SaveChangesAsync();
             }
+
         }
 
         /// <summary>
@@ -71,7 +70,7 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         {
             using (var context = DbContextFactory.Create())
             {
-                return await context.Employee.Include(i => i.Division).Include(i => i.Position).ToListAsync();
+                return await context.Employee.Include(i => i.Division).Include(i => i.Position).Include(o => o.Office).ToListAsync();
             }
         }
 
@@ -85,45 +84,6 @@ namespace Marshalls_LLC.Infrastructure.Repositories
             using (var context = DbContextFactory.Create())
             {
                 return await context.Employee.Where(x => x.EmployeeCode.Equals(employeeCode)).FirstOrDefaultAsync();
-            }
-        }
-
-        /// <summary>
-        /// Gets the by all office by same grade.
-        /// </summary>
-        /// <param name="office">The office.</param>
-        /// <param name="grade">The grade.</param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public async Task<List<Employee>> GetByAllOfficeBySameGrade(string employeeCode)
-        {
-            using (var context = DbContextFactory.Create())
-            {
-                var employee = await GetById(employeeCode);
-
-                if (employee != null)
-                {
-                    var result = context.Employee
-                        .Where(g => g.Grade.Equals(employee.Grade))
-                        .GroupBy(e => e.OfficeId)
-                        .Select(g => new { country = g.Key, count = g.Count() })
-                        .ToDictionary(k => k.country, i => i.count);
-                }
-
-                return null;
-            }
-        }
-
-        public async Task<List<Employee>> GetByAllPuestoySameGrade(string employeeCode)
-        {
-            using (var context = DbContextFactory.Create())
-            {
-                var employee = await GetById(employeeCode);
-
-                if (employee != null)
-                    return await context.Employee.Where(x => x.Grade.Equals(employee.Grade)).ToListAsync();
-
-                return null;
             }
         }
 
@@ -142,7 +102,7 @@ namespace Marshalls_LLC.Infrastructure.Repositories
                 if (employee != null)
                 {
                     var result = await context.Employee.Where(x => x.OfficeId.Equals(employee.OfficeId)
-                       && x.Grade.Equals(employee.Grade)).Include(i => i.Position).Include(i => i.Division).ToListAsync();
+                       && x.Grade.Equals(employee.Grade)).Include(i => i.Position).Include(i => i.Division).Include(o => o.Office).ToListAsync();
 
                     return result;
                 }
@@ -165,7 +125,7 @@ namespace Marshalls_LLC.Infrastructure.Repositories
                 if (employee != null)
                 {
                     var result = await context.Employee.Where(x => x.PositionId.Equals(employee.PositionId)
-                    && x.Grade.Equals(employee.Grade)).Include(i => i.Position).Include(i => i.Division).ToListAsync();
+                    && x.Grade.Equals(employee.Grade)).Include(i => i.Position).Include(i => i.Division).Include(o => o.Office).ToListAsync();
 
                     return result;
                 }
@@ -187,17 +147,7 @@ namespace Marshalls_LLC.Infrastructure.Repositories
                 return context.Employee.Select(x => AppDbContext.Quantity_Of_Employee_By_Name(name, sureName)).FirstOrDefault();
             }
 
-        }
-
-        /// <summary>
-        /// Gets the employee same office grade.
-        /// </summary>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public Task<List<Employee>> GetEmployeeSameOfficeGrade()
-        {
-            throw new Exception();
-        }
+        }     
 
         /// <summary>
         /// Gets the period month year by employee.
@@ -206,14 +156,19 @@ namespace Marshalls_LLC.Infrastructure.Repositories
         /// <param name="month"></param>
         /// <param name="year"></param>
         /// <returns></returns>
-        public int GetPeriodMonthYearByEmployee(int id, int month, int year)
+        public int GetPeriodMonthYearByEmployee(string employeeCode, int month, int year)
         {
             using (var context = DbContextFactory.Create())
             {
-                return context.Employee.Select(x => AppDbContext.Quantity_Of_Salary_By_Period(id, month, year)).FirstOrDefault();
+                return context.Employee.Select(x => AppDbContext.Quantity_Of_Salary_By_Period(employeeCode, month, year)).FirstOrDefault();
             }
         }
 
+        /// <summary>
+        /// Gets the last employee salarie.
+        /// </summary>
+        /// <param name="employeeCode">The employee code.</param>
+        /// <returns></returns>
         public Task<List<Employee>> GetLastEmployeeSalarie(string employeeCode)
         {
             var code = new SqlParameter("employeeCode", employeeCode);
@@ -221,6 +176,82 @@ namespace Marshalls_LLC.Infrastructure.Repositories
             var result = DbContextFactory.Create().Employee.FromSqlRaw($"EXECUTE  [dbo].[Sp_Get_Last_Employee_Salary] @EmployeeCode", code).ToListAsync();
             return result;
 
+        }
+
+        /// <summary>
+        /// Gets the by all office by same grade.
+        /// </summary>
+        /// <param name="office">The office.</param>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public List<EmployeePositionGroupDTO> GetByAllOfficeBySameGrade(int grade)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                List<EmployeePositionGroupDTO> result = new List<EmployeePositionGroupDTO>();
+
+
+                if (grade > 0)
+                {
+                    var GroupJoinMS = context.Office.ToList()
+                        .GroupJoin(
+                            context.Employee.Where(e => e.Grade.Equals(grade)).ToList(),
+                            office => office.Id,
+                            emp => emp.PositionId,
+                            (office, emp) => new { office, emp }
+                        ).ToList();
+
+                    foreach (var item in GroupJoinMS)
+                    {
+
+                        var itemEmployee = new EmployeePositionGroupDTO(item.office.Name, item.emp.ToList());
+
+                        if (item.emp.ToList().Count > 0)
+                            result.Add(itemEmployee);
+                    }
+                    return result;
+                }
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Gets the by all puestoy same grade.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <param name="employeeCode"></param>
+        /// <returns></returns>
+        public List<EmployeePositionGroupDTO> GetByAllPositionAndSameGrade(int grade)
+        {
+            using (var context = DbContextFactory.Create())
+            {
+                List<EmployeePositionGroupDTO> result = new List<EmployeePositionGroupDTO>();
+
+
+                if (grade > 0)
+                {
+                    var GroupJoinMS = context.Position.ToList()
+                        .GroupJoin(
+                            context.Employee.Where(e => e.Grade.Equals(grade)).ToList(),
+                            pos => pos.Id,
+                            emp => emp.PositionId,
+                            (pos, emp) => new { pos, emp }
+                        )
+                        .ToList();
+
+                    foreach (var item in GroupJoinMS)
+                    {
+
+                        var itemEmployee = new EmployeePositionGroupDTO(item.pos.Name, item.emp.ToList());
+
+                        if (item.emp.ToList().Count > 0)
+                            result.Add(itemEmployee);
+                    }
+                    return result;
+                }
+            }
+            return null;
         }
     }
 }

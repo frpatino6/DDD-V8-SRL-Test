@@ -1,0 +1,57 @@
+<app-tool-bar> </app-tool-bar>
+
+<div class="main-div">
+    <form action="">
+        <mat-card fxLayout="row wrap">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre empleado</mat-label>
+                <input matInput placeholder="Placeholder" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Apellidos empleado</mat-label>
+                <input matInput placeholder="Placeholder" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>N° Identificación</mat-label>
+                <input matInput placeholder="Placeholder" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Código empleado</mat-label>
+                <input matInput placeholder="Placeholder" />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha nacimiento</mat-label>
+                <input matInput [matDatepicker]="pickerBirthday">
+                <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>
+                <mat-datepicker #pickerBirthday></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha inicio</mat-label>
+                <input matInput [matDatepicker]="pickerBegin">
+                <mat-datepicker-toggle matSuffix [for]="pickerBegin"></mat-datepicker-toggle>
+                <mat-datepicker #pickerBegin></mat-datepicker>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Oficina" [(ngModel)]="dataSourceOffice" name="Office" [(value)]="selectedOffice">
+                    <mat-option *ngFor="let office of dataSourceOffice" [value]="office.valor">
+                        {{office.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="Posición" [(ngModel)]="dataSourcePosition" name="Position" [(value)]="selectedPosition">
+                    <mat-option *ngFor="let pos of dataSourcePosition" [value]="pos.valor">
+                        {{pos.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-select placeholder="División" [(ngModel)]="dataSourceDivision" name="Division" [(value)]="selectedDivision">
+                    <mat-option *ngFor="let div of dataSourceDivision" [value]="div.valor">
+                        {{div.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card>
+    </form>
+</div>

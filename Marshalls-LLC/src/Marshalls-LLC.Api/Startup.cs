@@ -36,6 +36,13 @@ namespace Marshalls_LLC.Api
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeServices, EmployeeServices>();
             services.AddScoped<IEmployeeDataValidations, EmployeeDataValidations>();
+            services.AddScoped<IOfficeRepository, OfficeRepository>();
+            services.AddScoped<IOfficeServices, OfficeServices>();
+            services.AddScoped<IPositionRepository, PositionRepository>();
+            services.AddScoped<IPositionServices, PositionServices>();
+            services.AddScoped<IDivisionRepository, DivisionRepository>();
+            services.AddScoped<IDivisionServices, DivisionServices>();
+          
 
             services.AddAutoMapper(typeof(Startup));
 

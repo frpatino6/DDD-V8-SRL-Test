@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { EmployeeDTO } from '../models/employee';
+import { GroupEmployeeDTO } from '../models/group-employee';
 
 @Injectable()
 export class EmployeeServices {
@@ -23,7 +24,8 @@ export class EmployeeServices {
     const strlcl = this.strUrl + controler;
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header });
   }
-  public getLastEmployeesSalary(
+
+  public getReportByReporType(
     employeeCode: string,
     reportType: string
   ): Observable<EmployeeDTO> {
@@ -33,7 +35,23 @@ export class EmployeeServices {
     params.set('reportType', reportType);
 
     const controler = 'Employee';
-    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=5';
+    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType;
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header, params });
+  }
+
+  public getReportGroupByType(
+    employeeCode: string,
+    reportType: string,
+    grade: number
+  ): Observable<GroupEmployeeDTO[]> {
+    const params = new HttpParams().set('logNamespace', employeeCode);
+
+    params.set('emplyeeCode', employeeCode);
+    params.set('reportType', reportType);
+    params.set('grade', grade.toString());
+
+    const controler = 'Employee';
+    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType + '&grade=' + grade;
+    return this.http.get<GroupEmployeeDTO[]>(strlcl, { headers: this.header, params });
   }
 }

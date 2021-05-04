@@ -23,7 +23,7 @@ export class EmployeeLastSalarieComponent implements OnInit {
   }
 
   getLastEmployeeSalary(employeeCode): void{
-    this.employeeServices.getLastEmployeesSalary(employeeCode, '5').subscribe(
+    this.employeeServices.getReportByReporType(employeeCode, '5').subscribe(
       (result) => {
         this.dataSource = result;
       },

@@ -50,7 +50,7 @@ namespace Marshalls_LLC.Core.SharedKernel
             if (employee.Id > 0)
             {
                 // validates if employee have created a same period  
-                var countResultSalaryPeriod = this.salaryRepository.GetPeriodMonthYearByEmployee(employee.Id, employee.Month, employee.Year);
+                var countResultSalaryPeriod = this.salaryRepository.GetPeriodMonthYearByEmployee(employee.EmployeeCode, employee.Month, employee.Year);
                 if (countResultSalaryPeriod > 0)
                     throw new Exception($"Ya existe un periodo creado para  el mes {employee.Month} y año {employee.Year}");
             }

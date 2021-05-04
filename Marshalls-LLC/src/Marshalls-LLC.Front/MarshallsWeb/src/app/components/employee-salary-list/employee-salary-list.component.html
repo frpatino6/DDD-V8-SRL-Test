@@ -1,41 +1,71 @@
-<app-tool-bar></app-tool-bar>
-<mat-table [dataSource]="dataSourceGroupBy.employees" class="mat-elevation-z8">
+<app-tool-bar>
+</app-tool-bar>
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
 
-    <ng-container matColumnDef="NombreCompleto">
-        <th mat-header-cell *matHeaderCellDef> Nombre completo. </th>
-        <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
-    </ng-container>
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-    <ng-container matColumnDef="Division">
-        <th mat-header-cell *matHeaderCellDef> División. </th>
-        <td mat-cell *matCellDef="let element"> {{element.divisionName}} </td>
-    </ng-container>
+        <ng-container matColumnDef="OfficeName">
+            <mat-header-cell *matHeaderCellDef> Oficina </mat-header-cell>
+            <mat-cell *matCellDef="let ofc"> {{ofc.parentId}} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="Posicion">
-        <th mat-header-cell *matHeaderCellDef> Posición. </th>
-        <td mat-cell *matCellDef="let element"> {{element.positionName}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="FechaInicio">
-        <th mat-header-cell *matHeaderCellDef> Fecha inicio. </th>
-        <td mat-cell *matCellDef="let element"> {{element.beginDateFormat}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="Cumpleanos">
-        <th mat-header-cell *matHeaderCellDef> Cumpleaños. </th>
-        <td mat-cell *matCellDef="let element"> {{element.birthdayFormat}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="NumeroIdentificacion">
-        <th mat-header-cell *matHeaderCellDef> Número identificación. </th>
-        <td mat-cell *matCellDef="let element"> {{element.identificationNumber}} </td>
-    </ng-container>
-    <ng-container matColumnDef="SalarioTotal">
-        <th mat-header-cell *matHeaderCellDef> Salario total. </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalSalary}} </td>
-    </ng-container>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-    <mat-row *matRowDef="let row; columns: ['groupHeader']; when: isGroup"> </mat-row>
-
-</mat-table>
+        <ng-container matColumnDef="NombreCompleto">
+            <mat-header-cell *matHeaderCellDef> Nombre completo </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.employeeName + ' ' + employee.employeeSurname}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Grado">
+            <mat-header-cell *matHeaderCellDef> Grado </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.grade}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Codigo">
+            <mat-header-cell *matHeaderCellDef> Código </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.employeeCode}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="FechaInicio">
+            <mat-header-cell *matHeaderCellDef> mes </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.beginDateFormat}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Mes">
+            <mat-header-cell *matHeaderCellDef> mes </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.month}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="Ano">
+            <mat-header-cell *matHeaderCellDef> Año </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.year}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="SalarioBase">
+            <mat-header-cell *matHeaderCellDef> Salario base </mat-header-cell>
+            <mat-cell *matCellDef="let employee">
+                <mat-cell [matchCellHeight]='book' *ngFor="let employee of employee.listEmployee">
+                    {{employee.baseSalary}}
+                </mat-cell>
+            </mat-cell>
+        </ng-container>
+    </mat-table>
+</div>

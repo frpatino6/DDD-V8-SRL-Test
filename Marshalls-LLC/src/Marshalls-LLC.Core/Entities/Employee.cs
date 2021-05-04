@@ -3,13 +3,14 @@ using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace Marshalls_LLC.Core.Entities
 {
     /// <summary>
     /// Salary entity
     /// </summary>
-    public class Employee
+    public class Employee : ICloneable
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key, Column(Order = 0)]
@@ -17,11 +18,22 @@ namespace Marshalls_LLC.Core.Entities
         public int Year { get; set; }
         public int Month { get; set; }
         public int OfficeId { get; set; }
+
+        [ForeignKey(nameof(OfficeId))]
+        [InverseProperty("Employees")]
         public Office Office { get; set; }
+
+        [JsonIgnore]
+        [ForeignKey(nameof(DivisionId))]
+        [InverseProperty("Employees")]
         public Division Division { get; set; }
         public int DivisionId { get; set; }
         public int PositionId { get; set; }
+
+        [ForeignKey(nameof(PositionId))]
+        [InverseProperty("Employees")]
         public Position Position { get; set; }
+
         [MaxLength(10)]
         public string EmployeeCode { get; set; }
         [DefaultValue("")]
@@ -47,6 +59,10 @@ namespace Marshalls_LLC.Core.Entities
         public decimal Commission { get; set; }
         [DefaultValue(0)]
         public decimal Contributions { get; set; }
-        public decimal Bono { get; set; }
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }

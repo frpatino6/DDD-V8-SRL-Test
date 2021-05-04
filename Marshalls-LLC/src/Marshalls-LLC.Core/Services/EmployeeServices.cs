@@ -36,13 +36,48 @@ namespace Marshalls_LLC.Core.Services
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public Task<int> CreateEmployee(Employee employee)
+        public Task<int> CreateEmployee(Employee employee, int initMonth, int countPeriodo, int initYear)
         {
             if (this.employeeDataValidations.ValidateEmpoyeeData(employee))
             {
-                return salaryRepository.CreateSalary(employee);
+                return salaryRepository.CreateSalary(CreateSalaryPeriodo(employee, initMonth, countPeriodo, initYear));
             }
-            return null;
+            else
+                throw new Exception($"Error creando periodo para el empleado {employee.EmployeeName} {employee.EmployeeSurname}");
+        }
+
+        /// <summary>
+        /// Creates the salary periodo.
+        /// </summary>
+        /// <returns>a List for each periodo employee</returns>
+        private List<Employee> CreateSalaryPeriodo(Employee employee, int initMonth, int countPeriodo, int initYear)
+        {
+            int year = initYear;
+            int month = initMonth;
+            Employee employeePeriodo;
+
+            List<Employee> listNewEmployeePeriodo = new List<Employee>();
+
+            for (int i = 0; i < countPeriodo; i++)
+            {
+                if (month <= 12)
+                {
+                    employeePeriodo = (Employee)employee.Clone();
+                    employeePeriodo.Month = month;
+                    employeePeriodo.Year = year;
+                    listNewEmployeePeriodo.Add(employeePeriodo);
+                }
+                month++;
+
+                if (month > 12)
+                {
+                    year++;
+                    month = 1;
+                }
+            }
+
+            return listNewEmployeePeriodo;
+
         }
 
         /// <summary>
@@ -51,18 +86,17 @@ namespace Marshalls_LLC.Core.Services
         /// <returns></returns>
         public Task<List<Employee>> GetAll(string emplyeeCode = "", int? reportType = 0)
         {
+            if (reportType > 5)
+                throw new Exception("Opción de reporte no válido");
+
             if (!string.IsNullOrEmpty(emplyeeCode) && reportType.HasValue)
             {
                 switch (reportType)
                 {
                     case 1:
                         return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
-                    case 2:
-                        return salaryRepository.GetByAllOfficeBySameGrade(emplyeeCode);
                     case 3:
                         return salaryRepository.GetByPositionAndGrade(emplyeeCode);
-                    case 4:
-                        return salaryRepository.GetByOfficeAndGrade(emplyeeCode);
                     case 5:
                         return salaryRepository.GetLastEmployeeSalarie(emplyeeCode);
                 }
@@ -70,5 +104,24 @@ namespace Marshalls_LLC.Core.Services
             return salaryRepository.GetAll();
         }
 
+        /// <summary>
+        /// Gets the employee group position.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        public List<EmployeePositionGroupDTO> GetEmployeeGroupPosition(int grade)
+        {
+            return salaryRepository.GetByAllPositionAndSameGrade(grade);
+        }
+
+        /// <summary>
+        /// Gets the employee group office.
+        /// </summary>
+        /// <param name="grade">The grade.</param>
+        /// <returns></returns>
+        public List<EmployeePositionGroupDTO> GetEmployeeGroupOffice(int grade)
+        {
+            return salaryRepository.GetByAllOfficeBySameGrade(grade);
+        }
     }
 }

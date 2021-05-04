@@ -12,10 +12,22 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { MatListModule } from '@angular/material/list';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatGridListModule } from '@angular/material/grid-list';
 import { EmployeeSalaryListComponent } from './components/employee-salary-list/employee-salary-list.component';
 import { EmployeeServices } from './services/employee-salary-service';
 import { HttpClientModule } from '@angular/common/http';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EmployeeLastSalarieComponent } from './components/employee-last-salarie/employee-last-salarie.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { OfficeServices } from './services/officeServices';
+import { PositionServices } from './services/positionServicesy';
+import { DivisionServices } from './services/divisionServices';
+import { EmployeeSalaryListByPositionComponent } from './components/employee-salary-list-by-position/employee-salary-list-by-position.component';
 
 @NgModule({
   declarations: [
@@ -24,27 +36,46 @@ import { EmployeeLastSalarieComponent } from './components/employee-last-salarie
     ToolBarComponent,
     EmployeeSalaryListComponent,
     EmployeeLastSalarieComponent,
+    AddEmployeeComponent,
+    EmployeeSalaryListByPositionComponent,
   ],
   imports: [
+    FormsModule,
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+    MatGridListModule,
+    MatCardModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatSelectModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatTableModule,
     MatMenuModule,
     MatToolbarModule,
     MatCardModule,
+    MatListModule,
+    MatDatepickerModule,
     MatInputModule,
     BrowserAnimationsModule,
   ],
   exports: [
     MatButtonModule,
+    MatCardModule,
     MatMenuModule,
     MatToolbarModule,
     MatCardModule,
     MatInputModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
   ],
-  providers: [EmployeeServices],
+  providers: [
+    EmployeeServices,
+    OfficeServices,
+    PositionServices,
+    DivisionServices,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

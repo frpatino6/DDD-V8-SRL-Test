@@ -107,9 +107,9 @@ namespace Marshalls_LLC.Infrastructure.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 1, "A" },
-                    { 2, "B" },
-                    { 3, "C" }
+                    { 1, "Recursos Humanos" },
+                    { 2, "IT" },
+                    { 3, "Gerencia en tecnologia" }
                 });
 
             migrationBuilder.InsertData(
@@ -285,7 +285,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
             GO
             CREATE FUNCTION [dbo].[Quantity_Of_Salary_By_Period]
                         (
-	                        @Id int,
+	                        @EmployeeCode nvarchar(10),
 	                        @Month int,
 	                        @Year int
                         )
@@ -298,7 +298,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 	                          
 	                        SELECT @result = count(*)
 	                        from  [dbo].[Employee]
-	                        where [Id]=@Id and [Month]= @Month and [Year]= @Year
+	                        where [EmployeeCode]=@EmployeeCode and [Month]= @Month and [Year]= @Year
 
 	                          
 	                        RETURN @result
@@ -313,7 +313,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
             CREATE PROCEDURE [dbo].[Sp_Get_Last_Employee_Salary]
 	            @EmployeeCode nvarchar(10)
             AS
-            BEGIN
+             BEGIN
 	            IF OBJECT_ID (N'#Salaries', N'U') IS NOT NULL 
 	            drop table #Salaries
 
@@ -327,6 +327,7 @@ namespace Marshalls_LLC.Infrastructure.Migrations
 	            select a.basesalary/3 as Bono, a.*
 	            from #Salaries as a
 	            where a.employeecode=@employeecode
+				order by a.month
             END 
         
             GO";

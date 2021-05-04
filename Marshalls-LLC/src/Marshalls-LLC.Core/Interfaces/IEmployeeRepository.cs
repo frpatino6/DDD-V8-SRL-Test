@@ -17,7 +17,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// </summary>
         /// <param name="salary">The salary.</param>
         /// <returns></returns>
-        Task<int> CreateSalary(Employee salary);
+        Task<int> CreateSalary(List<Employee> employees);
 
         /// <summary>
         /// Gets the full name of the employee by.
@@ -33,7 +33,7 @@ namespace Marshalls_LLC.Core.Interfaces
         /// <param name="name">The name.</param>
         /// <param name="sureName">Name of the sure.</param>
         /// <returns></returns>
-        int GetPeriodMonthYearByEmployee(int id, int month, int year);
+        int GetPeriodMonthYearByEmployee(string  employeeCode, int month, int year);
 
         /// <summary>
         /// Gets the specified employee dto.
@@ -77,14 +77,14 @@ namespace Marshalls_LLC.Core.Interfaces
         /// </summary>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByAllOfficeBySameGrade(string employeeCode);
+        List<EmployeePositionGroupDTO> GetByAllOfficeBySameGrade(int grade);
 
         /// <summary>
         /// Gets the by all puestoy same grade.
         /// </summary>
         /// <param name="grade">The grade.</param>
         /// <returns></returns>
-        Task<List<Employee>> GetByAllPuestoySameGrade(string employeeCode);
+        List<EmployeePositionGroupDTO> GetByAllPositionAndSameGrade(int grade);
 
         /// <summary>
         /// Gets the last employee salarie.

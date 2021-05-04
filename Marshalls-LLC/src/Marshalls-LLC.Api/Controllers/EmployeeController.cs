@@ -3,7 +3,6 @@
 namespace Marshalls_LLC.Api.Controllers
 {
     using AutoMapper;
-    using Marshalls_LLC.Api.Mapper;
     using Marshalls_LLC.Core.Dto;
     using Marshalls_LLC.Core.Entities;
     using Marshalls_LLC.Core.Interfaces;
@@ -24,6 +23,9 @@ namespace Marshalls_LLC.Api.Controllers
         /// </summary>
         private readonly IEmployeeServices employeeServices;
 
+        /// <summary>
+        /// The mapper
+        /// </summary>
         private readonly IMapper mapper;
 
         /// <summary>
@@ -37,12 +39,29 @@ namespace Marshalls_LLC.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get(string employeeCode = "", int? reportType = 0)
+        public async Task<IActionResult> Get(string employeeCode = "", int? reportType = 0, int? grade = 0)
         {
             try
             {
-                var allEmployees = await employeeServices.GetAll(employeeCode, reportType);
-                var result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
+                List<Employee> allEmployees = null;
+                List<EmployeeDTO> result = null;
+                List<EmployeePositionGroupDTO> allEmployeesGroup;
+
+                if (reportType == 2)
+                {
+                    allEmployeesGroup = employeeServices.GetEmployeeGroupOffice(grade.Value);
+                    return Ok(allEmployeesGroup);
+                }
+
+                if (reportType == 4)
+                {
+                    allEmployeesGroup = employeeServices.GetEmployeeGroupPosition(grade.Value);
+                    return Ok(allEmployeesGroup);
+                }
+
+                allEmployees = await employeeServices.GetAll(employeeCode, reportType);
+                result = mapper.Map<IEnumerable<EmployeeDTO>>(allEmployees).ToList();
+
 
                 if (result.Count > 0)
                     return Ok(result);
@@ -57,14 +76,15 @@ namespace Marshalls_LLC.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] EmployeeDTO value)
+        public async Task<IActionResult> Post([FromBody] EmployeeDTO value, int initialMonth, int numPeriodos, int initYear)
         {
             try
             {
                 Employee newEmployee = new Employee();
 
                 newEmployee = mapper.Map<Employee>(value);
-                var recordsAffected = await employeeServices.CreateEmployee(newEmployee);
+
+                var recordsAffected = await employeeServices.CreateEmployee(newEmployee, initialMonth, numPeriodos, initYear);
 
                 if (recordsAffected > 0)
                     return Ok(recordsAffected);
