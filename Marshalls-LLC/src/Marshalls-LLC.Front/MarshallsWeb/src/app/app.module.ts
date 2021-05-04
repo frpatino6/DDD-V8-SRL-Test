@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
 import { OfficeServices } from './services/officeServices';
 import { PositionServices } from './services/positionServicesy';
 import { DivisionServices } from './services/divisionServices';
+import { EmployeeSalaryListByPositionComponent } from './components/employee-salary-list-by-position/employee-salary-list-by-position.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DivisionServices } from './services/divisionServices';
     EmployeeSalaryListComponent,
     EmployeeLastSalarieComponent,
     AddEmployeeComponent,
+    EmployeeSalaryListByPositionComponent,
   ],
   imports: [
     FormsModule,

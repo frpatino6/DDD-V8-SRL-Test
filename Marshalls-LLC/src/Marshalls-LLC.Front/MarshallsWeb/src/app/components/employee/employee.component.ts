@@ -40,6 +40,10 @@ export class EmployeeComponent implements OnInit {
     this.router.navigate(['./salaries_employees', employeeCode, grade]);
   }
 
+  groupListByPosition(employeeCode, grade): void {
+    this.router.navigate(['./salaries_employees_by_position', employeeCode, grade]);
+  }
+
   getSameOfficeAndSameGrade(employeeCode): void {
     this.employeeServices.getReportByReporType(employeeCode, '1').subscribe(
       (result) => {

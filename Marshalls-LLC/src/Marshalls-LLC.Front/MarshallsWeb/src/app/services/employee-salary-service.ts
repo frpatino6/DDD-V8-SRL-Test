@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { EmployeeDTO } from '../models/employee';
+import { GroupEmployeeDTO } from '../models/group-employee';
 
 @Injectable()
 export class EmployeeServices {
@@ -42,7 +43,7 @@ export class EmployeeServices {
     employeeCode: string,
     reportType: string,
     grade: number
-  ): Observable<EmployeeDTO> {
+  ): Observable<GroupEmployeeDTO[]> {
     const params = new HttpParams().set('logNamespace', employeeCode);
 
     params.set('emplyeeCode', employeeCode);
@@ -51,6 +52,6 @@ export class EmployeeServices {
 
     const controler = 'Employee';
     const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType + '&grade=' + grade;
-    return this.http.get<EmployeeDTO>(strlcl, { headers: this.header, params });
+    return this.http.get<GroupEmployeeDTO[]>(strlcl, { headers: this.header, params });
   }
 }

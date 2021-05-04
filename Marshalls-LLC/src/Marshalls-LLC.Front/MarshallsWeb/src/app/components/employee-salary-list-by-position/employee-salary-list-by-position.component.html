@@ -6,8 +6,8 @@
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-        <ng-container matColumnDef="OfficeName">
-            <mat-header-cell *matHeaderCellDef> Oficina </mat-header-cell>
+        <ng-container matColumnDef="PositionName">
+            <mat-header-cell *matHeaderCellDef> Posición </mat-header-cell>
             <mat-cell *matCellDef="let ofc"> {{ofc.parentId}} </mat-cell>
         </ng-container>
 

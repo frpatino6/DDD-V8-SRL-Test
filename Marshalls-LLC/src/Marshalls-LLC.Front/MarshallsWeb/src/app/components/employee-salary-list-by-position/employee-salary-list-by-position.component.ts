@@ -1,21 +1,19 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import * as _ from 'lodash';
-import { EmployeeServices } from '../../services/employee-salary-service';
 import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { GroupEmployeeDTO } from 'src/app/models/group-employee';
-import { EmployeeDTO } from '../../models/employee';
+import { EmployeeServices } from 'src/app/services/employee-salary-service';
 
 @Component({
-  selector: 'app-employee-salary-list',
-  templateUrl: './employee-salary-list.component.html',
-  styleUrls: ['./employee-salary-list.component.scss'],
+  selector: 'app-employee-salary-list-by-position',
+  templateUrl: './employee-salary-list-by-position.component.html',
+  styleUrls: ['./employee-salary-list-by-position.component.scss']
 })
-export class EmployeeSalaryListComponent implements OnInit {
+export class EmployeeSalaryListByPositionComponent implements OnInit  {
   dataSource;
   displayedColumns = [
-    'OfficeName',
+    'PositionName',
     'NombreCompleto',
     'Grado',
     'Codigo',
@@ -42,7 +40,7 @@ export class EmployeeSalaryListComponent implements OnInit {
 
   groupListByOffice(employeeCode, grade): void {
     this.employeeServices
-      .getReportGroupByType(employeeCode, '2', grade)
+      .getReportGroupByType(employeeCode, '4', grade)
       .subscribe(
         (result) => {
            this.dataSource = new MatTableDataSource<GroupEmployeeDTO>(result);

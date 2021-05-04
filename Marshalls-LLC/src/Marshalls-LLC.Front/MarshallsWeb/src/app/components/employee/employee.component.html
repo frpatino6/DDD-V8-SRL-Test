@@ -48,7 +48,7 @@
             <button class='buttonRow' mat-raised-button (click)="getSameOfficeAndSameGrade(row.employeeCode)">1</button>
             <button class='buttonRow' mat-raised-button (click)="groupListByOffice(row.employeeCode,row.grade)"> 2</button>
             <button class='buttonRow' mat-raised-button (click)="getSamePositionAndSameGrade(row.employeeCode)"> 3</button>
-            <button class='buttonRow' mat-raised-button> 4</button>
+            <button class='buttonRow' mat-raised-button (click)="groupListByPosition(row.employeeCode,row.grade)"> 4</button>
         </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
