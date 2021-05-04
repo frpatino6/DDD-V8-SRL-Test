@@ -76,7 +76,7 @@ namespace Marshalls_LLC.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] EmployeeDTO value, int initialMonth, int numPeriodos, int initYear)
+        public async Task<IActionResult> Post([FromBody] EmployeeDTO value)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace Marshalls_LLC.Api.Controllers
 
                 newEmployee = mapper.Map<Employee>(value);
 
-                var recordsAffected = await employeeServices.CreateEmployee(newEmployee, initialMonth, numPeriodos, initYear);
+                var recordsAffected = await employeeServices.CreateEmployee(newEmployee, value.Month, value.employeePeriods, value.Year);
 
                 if (recordsAffected > 0)
                     return Ok(recordsAffected);

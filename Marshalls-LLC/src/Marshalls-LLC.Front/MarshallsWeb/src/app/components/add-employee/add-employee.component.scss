@@ -16,7 +16,10 @@ p {
 }
 
 .main-div {
-    height: 100vh;
     display: flex;
     justify-content: center;
+}
+
+.button-row {
+    text-align: center;
 }

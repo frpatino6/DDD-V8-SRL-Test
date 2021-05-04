@@ -30,7 +30,10 @@ namespace Marshalls_LLC.Core.Dto
         {
             get
             {
-                return string.Format("{0:dd/MM/yyyy}", BeginDate.Value);
+                if (BeginDate != null)
+                    return string.Format("{0:dd/MM/yyyy}", BeginDate.Value);
+
+                return string.Empty;
             }
         }
 
@@ -38,7 +41,10 @@ namespace Marshalls_LLC.Core.Dto
         {
             get
             {
-                return string.Format("{0:dd/MM/yyyy}", Birthday.Value);
+                if (Birthday != null)
+                    return string.Format("{0:dd/MM/yyyy}", Birthday.Value);
+
+                return string.Empty;                
             }
         }
 
@@ -70,5 +76,8 @@ namespace Marshalls_LLC.Core.Dto
                 return BaseSalary / 3;
             }
         }
+        public int employeeInitialYear { get; set; }
+        public int employeeInitialMonth { get; set; }
+        public int employeePeriods { get; set; }
     }
 }

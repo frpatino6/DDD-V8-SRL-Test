@@ -1,57 +1,83 @@
 <app-tool-bar> </app-tool-bar>
 
 <div class="main-div">
-    <form action="">
-        <mat-card fxLayout="row wrap">
+    <mat-card fxLayout="row wrap">
+        <form (ngSubmit)="onSubmit()" [formGroup]="employeeForm">
             <mat-form-field appearance="outline">
                 <mat-label>Nombre empleado</mat-label>
-                <input matInput placeholder="Placeholder" />
+                <input matInput formControlName="employeeName" />
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Apellidos empleado</mat-label>
-                <input matInput placeholder="Placeholder" />
+                <input matInput formControlName="employeeSurname" />
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>N° Identificación</mat-label>
-                <input matInput placeholder="Placeholder" />
+                <input matInput formControlName="identificationNumber" />
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Código empleado</mat-label>
-                <input matInput placeholder="Placeholder" />
+                <input matInput formControlName="employeeCode" />
+            </mat-form-field>
+            <mat-form-field type="number" appearance="outline">
+                <mat-label>Salario base</mat-label>
+                <input matInput type="number" formControlName="baseSalary" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Grado</mat-label>
+                <input matInput type="number" formControlName="grade" />
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Fecha nacimiento</mat-label>
-                <input matInput [matDatepicker]="pickerBirthday">
-                <mat-datepicker-toggle matSuffix [for]="pickerBirthday"></mat-datepicker-toggle>
+                <input matInput formControlName="birthday" [matDatepicker]="pickerBirthday">
+                <mat-datepicker-toggle matSuffix [for]="pickerBirthday" formControlName="beginDate"></mat-datepicker-toggle>
                 <mat-datepicker #pickerBirthday></mat-datepicker>
             </mat-form-field>
             <mat-form-field appearance="fill">
                 <mat-label>Fecha inicio</mat-label>
-                <input matInput [matDatepicker]="pickerBegin">
+                <input matInput formControlName="beginDate" [matDatepicker]="pickerBegin">
                 <mat-datepicker-toggle matSuffix [for]="pickerBegin"></mat-datepicker-toggle>
                 <mat-datepicker #pickerBegin></mat-datepicker>
             </mat-form-field>
             <mat-form-field>
-                <mat-select placeholder="Oficina" [(ngModel)]="dataSourceOffice" name="Office" [(value)]="selectedOffice">
-                    <mat-option *ngFor="let office of dataSourceOffice" [value]="office.valor">
+                <mat-label>Oficina</mat-label>
+                <mat-select name="office" [(value)]="selectedOffice" formControlName="officeId">
+                    <mat-option *ngFor="let office of dataSourceOffice" [value]="office.id">
                         {{office.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-select placeholder="Posición" [(ngModel)]="dataSourcePosition" name="Position" [(value)]="selectedPosition">
-                    <mat-option *ngFor="let pos of dataSourcePosition" [value]="pos.valor">
+                <mat-label>Posición</mat-label>
+                <mat-select name="pos" [(value)]="selectedPosition" formControlName="positionId">
+                    <mat-option *ngFor="let pos of dataSourcePosition" [value]="pos.id">
                         {{pos.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
             <mat-form-field>
-                <mat-select placeholder="División" [(ngModel)]="dataSourceDivision" name="Division" [(value)]="selectedDivision">
-                    <mat-option *ngFor="let div of dataSourceDivision" [value]="div.valor">
+                <mat-label>División</mat-label>
+                <mat-select name="div" [(value)]="selectedDivision" formControlName="divisionId">
+                    <mat-option *ngFor="let div of dataSourceDivision" [value]="div.id">
                         {{div.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-        </mat-card>
-    </form>
+            <mat-form-field appearance="outline">
+                <mat-label>Año Inicial</mat-label>
+                <input type="number" matInput formControlName="year" />
+            </mat-form-field>
+            <mat-form-field type="number" appearance="outline">
+                <mat-label>Mes Inicial</mat-label>
+                <input matInput type="number" formControlName="month" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Numero de Periodos</mat-label>
+                <input type="number" matInput formControlName="employeePeriods" />
+            </mat-form-field>
+            <div class="button-row">
+                <button type="submit" mat-flat-button color="primary">GUARDAR</button>
+            </div>
+        </form>
+    </mat-card>
 </div>

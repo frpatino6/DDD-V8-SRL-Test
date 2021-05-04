@@ -21,13 +21,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { EmployeeLastSalarieComponent } from './components/employee-last-salarie/employee-last-salarie.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { OfficeServices } from './services/officeServices';
 import { PositionServices } from './services/positionServicesy';
 import { DivisionServices } from './services/divisionServices';
 import { EmployeeSalaryListByPositionComponent } from './components/employee-salary-list-by-position/employee-salary-list-by-position.component';
+import {  ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { EmployeeSalaryListByPositionComponent } from './components/employee-sal
     AppRoutingModule,
     MatGridListModule,
     MatCardModule,
+    ReactiveFormsModule,
     MatNativeDateModule,
     MatDatepickerModule,
     MatSelectModule,
@@ -71,6 +73,7 @@ import { EmployeeSalaryListByPositionComponent } from './components/employee-sal
     MatFormFieldModule,
   ],
   providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
     EmployeeServices,
     OfficeServices,
     PositionServices,

@@ -35,7 +35,13 @@ export class EmployeeServices {
     params.set('reportType', reportType);
 
     const controler = 'Employee';
-    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType;
+    const strlcl =
+      this.strUrl +
+      controler +
+      '?employeeCode=' +
+      employeeCode +
+      '&reportType=' +
+      reportType;
     return this.http.get<EmployeeDTO>(strlcl, { headers: this.header, params });
   }
 
@@ -51,7 +57,28 @@ export class EmployeeServices {
     params.set('grade', grade.toString());
 
     const controler = 'Employee';
-    const strlcl = this.strUrl + controler + '?employeeCode=' + employeeCode + '&reportType=' + reportType + '&grade=' + grade;
-    return this.http.get<GroupEmployeeDTO[]>(strlcl, { headers: this.header, params });
+    const strlcl =
+      this.strUrl +
+      controler +
+      '?employeeCode=' +
+      employeeCode +
+      '&reportType=' +
+      reportType +
+      '&grade=' +
+      grade;
+    return this.http.get<GroupEmployeeDTO[]>(strlcl, {
+      headers: this.header,
+      params,
+    });
+  }
+
+  public CreateEmployeeSalary(
+    employee: EmployeeDTO
+  ): Observable<GroupEmployeeDTO[]> {
+    const controler = 'Employee';
+    const strlcl = this.strUrl + controler;
+    return this.http.post<any[]>(strlcl, employee, {
+      headers: this.header,
+    });
   }
 }
